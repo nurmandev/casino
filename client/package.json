@@ -1,0 +1,84 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "description": "client",
+  "private": true,
+  "keywords": [
+    "casino",
+    "games",
+    "online",
+    "roulette",
+    "blackjack",
+    "slots",
+    "craps",
+    "race",
+    "keno",
+    "rabbit"
+  ],
+  "author": "Oana Popescu",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.2",
+    "@fortawesome/free-brands-svg-icons": "^6.6.0",
+    "@fortawesome/free-regular-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@google-pay/button-react": "^3.1.0",
+    "@reduxjs/toolkit": "^1.9.3",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "apple-pay-button": "^1.1.7",
+    "bootstrap": "^5.2.3",
+    "crypto-js": "^4.1.1",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.6.4",
+    "leaflet": "^1.9.3",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.7.2",
+    "react-dom": "^18.2.0",
+    "react-leaflet": "^4.2.1",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.24.1",
+    "react-scripts": "^5.0.1",
+    "react-slick": "^0.30.2",
+    "redux": "^4.2.1",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-saga": "^1.2.3",
+    "redux-thunk": "^2.4.2",
+    "slick-carousel": "^1.8.1",
+    "socket.io-client": "^4.5.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "build": "react-scripts build",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "proxy": "http://localhost:1111",
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.3",
+    "eslint-plugin-react-hooks": "^4.6.2"
+  }
+}

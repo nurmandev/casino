@@ -1,0 +1,105 @@
+import React, {useState, useEffect} from 'react'
+import logo_icon_yellow from '../../img/logo/logo_yellow.png'
+import logo_icon_pink from '../../img/logo/logo_pink.png'
+import logo_icon_green from '../../img/logo/logo_green.png'
+import logo_icon_orange from '../../img/logo/logo_orange.png'
+import TransparentText from './transparentText'
+import { getWindowDimensions } from '../../utils/utils'
+
+function Splash(props) {
+    const {settings} = props
+    const {theme} = settings
+    const [height, setHeight] = useState(getHeightBasedOnWidth(getWindowDimensions().width))
+
+    function getHeightBasedOnWidth(width){
+        if(width >= 960){
+          return 72
+        } else if (width >= 600) {
+          return 50
+        } else {
+          return 30
+        }
+    }
+
+    function handleResize(){
+        setHeight(getHeightBasedOnWidth(getWindowDimensions().width))
+    }
+
+    useEffect(() => {    
+        if(typeof window !== "undefined"){
+            window.addEventListener("resize", handleResize)
+            handleResize()
+            return () => window.removeEventListener("resize", handleResize)
+        }
+	}, [])
+
+    function chooseLogo(){
+        switch (theme) {
+            case 'purple':
+              return logo_icon_pink
+            case 'black':
+              return logo_icon_green
+            case 'blue':
+              return logo_icon_orange
+            default:
+              return logo_icon_yellow
+        }
+    }
+
+    function chooseLogoText(){
+        switch (theme) {
+            case 'purple':
+              return "#ffc0cb"
+            case 'black':
+              return "#32CD32"
+            case 'blue':
+              return "#ff8000"
+            default:
+              return "gold"
+        }
+    }
+
+	return <div id="splash_screen">
+        <div className="splash_screen_container">
+            <div className="content_box">
+                <img id="logo_splash" alt="logo_splash" src={chooseLogo()} />
+                <div className="content-dot">
+                    <div className="content">
+                        <h1 className="splash_title">
+                            <TransparentText text={"BunnyBet"} height={height} size={height} fill={chooseLogoText()} stroke={chooseLogoText()}/>
+                        </h1>
+                    </div>
+                </div>
+                <div className="progress_container">
+                    <div className="progress_box_container">
+                        <div className="progress_box">
+                            <div className="progress" style={{width: props.progressNumber + '%'}}></div>
+                        </div>
+                    </div>
+                    <div className="progress_text" style={{width: props.progressNumber + '%'}}>
+                        <span>{props.progressNumber} %</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div className="main-diamond-outer">
+                <div className="main-diamond-inner"></div>
+            </div>
+            
+            <div className="mid-diamond-left"></div>
+            <div className="mid-diamond-right"></div>
+
+            <div className="small-diamond-left-top"></div>
+            <div className="small-diamond-left-bottom"></div>
+            <div className="small-diamond-right-top"></div>
+            <div className="small-diamond-right-bottom"></div>
+
+            <div className="small-diamond-1"></div>
+            <div className="small-diamond-2"></div>
+            <div className="small-diamond-3"></div>
+            <div className="small-diamond-4"></div>
+        </div>
+    </div>	
+}
+
+export default Splash
