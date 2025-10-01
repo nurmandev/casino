@@ -1,4 +1,4 @@
-# BC-Game Casino Script contact me on **[Telegram](https://t.me/Proficientng)** .
+# BC-Game Casino Script contact me on **[Telegram](https://t.me/Proficientng)**
 
 
 ![Home Page](./image.png)
