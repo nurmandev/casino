@@ -1,0 +1,86 @@
+.flip {
+  /* transform: rotateY(deg); */
+
+  animation: FlipAnimation 0.5s ease-in-out;
+}
+
+@keyframes FlipAnimation {
+  0% {
+    transform: rotateY(-90deg);
+  }
+  100% {
+    /* transform: translateX(100px); */
+    transform: rotateY(0deg);
+  }
+}
+
+.flick {
+  /* transform: rotateY(deg); */
+  /* transform-origin: ; */
+  transform-origin: 100% -150px;
+  /* transition: transform 0.5s; */
+  animation: FlickAnimation 0.4s ease-in-out;
+}
+
+@keyframes FlickAnimation {
+  0% {
+  }
+  100% {
+    transform: rotateZ(90deg);
+  }
+}
+
+.flick2 {
+  /* transform: rotateY(deg); */
+  /* transform-origin: ; */
+  transform-origin: 0% -150px;
+  /* transition: transform 0.5s; */
+  animation: FlickAnimation2 0.4s ease-in-out;
+}
+
+@keyframes FlickAnimation2 {
+  0% {
+    /* transform: translateY(-50px); */
+  }
+
+  100% {
+    /* transform: translateY(-100px); */
+    transform: rotateZ(-90deg);
+    /* background-color: blue; */
+  }
+}
+
+.travel {
+  /* transform: rotateY(deg); */
+  /* transform-origin: ; */
+  /* transform-origin: 0% -150px; */
+  /* transition: transform 0.5s; */
+  /* transform: translateX(100%); */
+  /* align-self: flex-end; */
+  /* justify-self: flex-end; */
+
+  animation: TravelAnimation2 0.4s ease-in;
+}
+
+@keyframes TravelAnimation2 {
+  0% {
+    transform: translateX(768px);
+    /* position: absolute; */
+    /* right: 0px; */
+  }
+
+  100% {
+    /* transform: translateY(-100px); */
+    position: inherit;
+    /* transform: rotateZ(-90deg); */
+    /* background-color: blue; */
+  }
+}
+
+.no-scroll {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+.no-scroll::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}

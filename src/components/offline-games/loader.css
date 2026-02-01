@@ -1,0 +1,40 @@
+.loader {
+  width: 100px;
+  height: 10px;
+  background-color: #2f4553;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.ball {
+  width: 9px;
+  height: 9px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: move 1s infinite ease-in-out;
+}
+
+@keyframes move {
+  0% {
+    left: 0;
+    transform: translateY(-50%) scaleX(1);
+  }
+  25% {
+    transform: translateY(-50%) scaleX(3);
+  }
+  50% {
+    left: calc(100% - 9px);
+    transform: translateY(-50%) scaleX(1);
+  }
+  75% {
+    transform: translateY(-50%) scaleX(3);
+  }
+  100% {
+    left: 0;
+    transform: translateY(-50%) scaleX(1);
+  }
+}

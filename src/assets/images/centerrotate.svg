@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 307 307">
+  <defs>
+    <radialGradient cx="49.896%" cy="18.926%" fx="49.896%" fy="18.926%" r="52.258%" id="b">
+      <stop stop-color="#FFC029" offset="0%"/>
+      <stop stop-color="#EF960A" offset="100%"/>
+    </radialGradient>
+    <radialGradient cx="66.558%" cy="50%" fx="66.558%" fy="50%" r="44.742%" id="c">
+      <stop stop-color="#FFEEB0" offset="0%"/>
+      <stop stop-color="#F7C71E" offset="100%"/>
+    </radialGradient>
+    <linearGradient x1="0%" y1="64.729%" x2="100%" y2="64.729%" id="a">
+      <stop stop-color="#CA7C01" offset="0%"/>
+      <stop stop-color="#FDBC26" offset="49.585%"/>
+      <stop stop-color="#CD7E02" offset="100%"/>
+    </linearGradient>
+  </defs>
+  <g transform="rotate(-52 176.309 85.991)" fill="none" fill-rule="evenodd">
+    <path fill="url(#a)" d="M105.511 13.346h6.797l4.215 72.606h-15.227z"/>
+    <path fill="url(#a)" transform="rotate(90 169.552 109.393)" d="M166.153 73.09h6.798l4.215 72.606h-15.228z"/>
+    <path fill="url(#a)" transform="rotate(180 108.91 170.035)" d="M105.511 133.732h6.797l4.215 72.607h-15.227z"/>
+    <path fill="url(#a)" transform="rotate(-90 48.267 109.393)" d="M44.868 73.09h6.797l4.216 72.606H40.653z"/>
+    <circle fill="url(#b)" cx="108.909" cy="109.147" r="25.652"/>
+    <circle fill="url(#b)" cx="109.125" cy="12.591" r="12.591"/>
+    <circle fill="url(#b)" cx="109.125" cy="205.654" r="12.591"/>
+    <circle fill="url(#b)" transform="rotate(-90 12.591 109.121)" cx="12.591" cy="109.121" r="12.591"/>
+    <circle fill="url(#c)" transform="rotate(-90 205.658 109.121)" cx="205.658" cy="109.121" r="12.591"/>
+    <circle fill="url(#b)" transform="rotate(-90 205.658 109.121)" cx="205.658" cy="109.121" r="12.591"/>
+  </g>
+</svg>

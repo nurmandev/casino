@@ -1,0 +1,55 @@
+.animate-click {
+  animation: clickAnimation 0.6s ease-in-out;
+}
+
+@keyframes clickAnimation {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  25%,
+  75% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+}
+
+.animate-button-click {
+  animation: buttonAnimation 0.2s ease-in-out;
+}
+
+@keyframes buttonAnimation {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+}
+
+.animate-popup {
+  animation: PopupAnimation 0.3s ease-out;
+}
+
+@keyframes PopupAnimation {
+  0% {
+    /* transform: translateY(50%); */
+    /* left: 50%;
+    top: 50%; */
+
+    /* transform: translateX(50%); */
+    transform: scale(0.5);
+  }
+  100% {
+    /* transform: scale(1); */
+  }
+}
+
+.pacifico-regular {
+  font-family: "Pacifico", cursive;
+  font-weight: 400;
+  font-style: normal;
+}

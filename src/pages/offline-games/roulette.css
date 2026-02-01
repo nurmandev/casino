@@ -1,0 +1,1459 @@
+/* .rouletteinner *, */
+::after,
+::before {
+    box-sizing: content-box !important ;
+}
+
+input:focus {
+    color: #fff !important;
+}
+/*new roulette*/
+
+html,
+body {
+    font-family: arial;
+    cursor: default;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.disabled-text {
+    color: gray;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.container {
+    justify-content: center;
+
+    padding: 20px;
+    color: #fff;
+}
+
+/*notification*/
+#notification {
+    position: absolute;
+    width: 500px;
+    height: 318px;
+    background-color: #ad0205;
+    z-index: 10;
+    border: 8px solid #d3b201;
+    border-radius: 12px;
+    transition: 1s;
+}
+
+.nSpan {
+    display: block;
+    position: relative;
+    top: 105px;
+    font-size: 53px;
+    text-align: center;
+}
+
+.nBtn {
+    display: block;
+    position: relative;
+    top: 116px;
+    left: 25%;
+    width: 45%;
+    padding: 10px;
+    font-size: 32px;
+    text-align: center;
+    background-color: green;
+    border-radius: 15px;
+    box-shadow: 3px 4px rgb(0 0 0 / 25%);
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.nBtn:active {
+    top: 118px;
+    left: calc(25% + 2px);
+    box-shadow: 1px 2px rgb(0 0 0 / 25%);
+}
+
+.nsWin {
+    position: absolute;
+    left: 4px;
+}
+
+.nsWinBlock {
+    display: inline-block;
+    font-size: 21px;
+    border-right: 1px solid;
+    border-left: 1px solid;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+/*notification end*/
+
+/*betting table*/
+#betting_board {
+    width: 500px;
+
+    margin: 0px auto;
+}
+
+#resbetting_board {
+    /*width: 500px;*/
+
+    /*margin: 0px auto;*/
+    transform: rotate(90deg);
+    display: inline-grid;
+    left: 250px;
+    position: relative;
+}
+
+.bbtop {
+    margin-left: 2px;
+}
+
+.bbtoptwo {
+    width: calc(50% - -2px);
+    border: 1px solid #313338;
+    display: inline-block;
+    padding: 5px 4px;
+    margin-left: -2px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+}
+.resbbtoptwo {
+    width: calc(50% - -2px);
+    border: 1px solid #313338;
+    display: inline-block;
+    padding: 5px 4px;
+    margin-left: -2px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+    position: relative;
+}
+
+.number_board {
+    margin-left: 1px;
+}
+.resnumber_board {
+    margin-left: 1px;
+}
+
+.number_block {
+    width: 39.79px;
+    border: 1px solid transparent;
+    text-align: center;
+    display: inline-block;
+    margin: 0.8px;
+    padding: 6px 0px;
+    position: relative;
+}
+.resnumber_block {
+    width: 41.79px;
+    border: 1px solid transparent;
+    text-align: center;
+    display: inline-block;
+    margin: 0 -0.3px;
+    padding: 6px 0px;
+    position: relative;
+}
+
+.winActiveClass {
+    border: 1px solid #87c93a;
+}
+.resultActiveClass {
+    border: 2px solid #87c93a;
+}
+
+.nbn {
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.bo3_board,
+.oto_board {
+    margin-left: 1px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.bo3_block,
+.oto_block {
+    border: 1px solid #3e3f46;
+    display: inline-block;
+    padding: 8px 5px;
+    width: 100%;
+
+    text-align: center;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.resbo3_board,
+.resoto_board {
+    margin-left: 1px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.resbo3_block,
+.resoto_block {
+    border: 1px solid #3e3f46;
+    display: inline-block;
+    padding: 8px 5px;
+    width: 100%;
+
+    text-align: center;
+    font-weight: bold;
+    font-size: 13px;
+    position: relative;
+}
+.oto_block {
+    width: 100%;
+    margin-left: 0px;
+    position: relative;
+    z-index: 99;
+}
+.resoto_block {
+    width: 100%;
+    margin-left: 0px;
+    position: relative;
+    z-index: 99;
+}
+
+.number_0 {
+    position: absolute;
+
+    margin-left: -46px;
+    margin-top: 0.484px;
+    padding: 41.55px 17px;
+    background: green;
+}
+.resnumber_0 {
+    position: absolute;
+
+    margin-left: -46px;
+    margin-top: 0.484px;
+    padding: 41.55px 17px;
+    background: green;
+}
+
+.tt1_block {
+    border: 1px solid #3d3f46;
+    width: 43px;
+    position: absolute;
+    margin-left: 496px;
+    padding: 5px 5px;
+    height: 37px;
+    margin-top: -35.75px;
+}
+.restt1_block {
+    border: 1px solid #3d3f46;
+    width: 43px;
+    position: absolute;
+    margin-left: 496px;
+    padding: 5px 5px;
+    height: 37px;
+    margin-top: -35.75px;
+}
+
+.resrestt1_block {
+    border: 1px solid #3d3f46;
+    width: 43px;
+    position: absolute;
+    margin-left: 496px;
+    padding: 5px 5px;
+    height: 37px;
+    margin-top: -35.75px;
+}
+
+.winning_lines {
+    /* position: absolute; */
+    /* margin-top: -137px; */
+    width: 100%;
+    /* height: 0; */
+}
+
+.result_lines {
+    position: absolute;
+    margin-top: -137px;
+    width: 500px;
+    height: 0;
+}
+
+.wlttb {
+    position: relative;
+    width: 100%;
+    height: 10px;
+    margin-left: -7.75px;
+    top: 269px;
+}
+
+#wlttb_top {
+    position: absolute;
+    margin-top: -89px;
+    margin-left: 11px;
+}
+
+#wlttb_2,
+#wlttb_3 {
+    margin-top: 79px;
+}
+
+.wlrtl {
+    position: relative;
+    display: inline-block;
+    width: 10px;
+
+    top: -3px;
+    margin-left: 37px;
+}
+
+#wlrtl_2,
+#wlrtl_3,
+#wlrtl_6,
+#wlrtl_9,
+#wlrtl_11 {
+    margin-left: 31px;
+}
+#wlrtl_4,
+#wlrtl_5,
+#wlrtl_7,
+#wlrtl_8,
+#wlrtl_10 {
+    margin-left: 32px;
+}
+
+.wlcb {
+    position: absolute;
+    width: 477px;
+    margin-left: 13px;
+}
+
+#wlcb_2 {
+    top: 343px;
+}
+
+.cbbb {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    display: inline-block;
+    margin-left: 22px;
+    margin-top: 9.5px;
+    cursor: pointer;
+}
+
+#cbbb_1,
+#cbbb_4,
+#cbbb_5,
+#cbbb_7,
+#cbbb_9,
+#cbbb_11,
+#cbbb_12,
+#cbbb_15,
+#cbbb_16,
+#cbbb_18,
+#cbbb_20,
+#cbbb_22 {
+    margin-left: 21px;
+}
+
+#cbbb_3,
+#cbbb_14 {
+    margin-left: 20.5px;
+}
+
+#cbbb_6,
+#cbbb_17 {
+    margin-left: 23px;
+}
+
+#cbbb_8,
+#cbbb_10,
+#cbbb_19,
+#cbbb_21 {
+    margin-left: 22px;
+}
+
+.ttbbetblock {
+    width: 19.1px;
+    height: 10px;
+    position: relative;
+    display: inline-block;
+    margin-left: 22.52px;
+    top: -2px;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.rtlbb1,
+.rtlbb2,
+.rtlbb3 {
+    margin-top: 23px;
+    width: 10px;
+}
+
+.rtlbb2,
+.rtlbb3 {
+    margin-top: 42px;
+}
+
+.spinBtn {
+    position: absolute;
+    margin-top: 329px;
+    margin-left: -392px;
+    font-size: 15px;
+    cursor: pointer;
+    background-color: #ffec00;
+    padding: 10px 5px;
+    border-radius: 100%;
+    color: #000;
+    font-weight: bold;
+}
+
+.redNum {
+    background-color: #9b124c;
+}
+
+.blackNum {
+    background-color: #232e39;
+}
+
+.chipDeck,
+.ban.Container {
+    position: absolute;
+    margin-left: -383px;
+    margin-top: -74px;
+    width: 310px;
+    height: 39px;
+    padding: 3px 0;
+    border: 1px solid;
+    border-radius: 10px;
+    box-shadow: inset -2px -4px rgb(0 0 0 / 20%);
+}
+
+.ban.Container {
+    margin-top: -21px;
+}
+
+.cdChip {
+    width: 27px;
+    height: 27px;
+    background-color: #fff;
+    border: 5px solid;
+    border-radius: 100%;
+    display: inline-block;
+    margin-left: 9px;
+    color: #000;
+    cursor: pointer;
+}
+
+.cdChipSpan {
+    display: inherit;
+    position: relative;
+    top: 5px;
+    width: 26px;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+}
+
+.cdChipActive {
+    position: relative;
+
+    box-shadow: 0 4px rgb(0 0 0 / 20%);
+}
+.cdChipActive::before {
+    content: '';
+    position: absolute;
+    border: 1px solid #fff;
+    width: 30px;
+    height: 28px;
+    border-radius: 100%;
+    top: 1px;
+    left: 3px;
+}
+
+.clearBet {
+    border-color: red;
+    background-color: red;
+    color: #fff;
+    margin-left: 22px;
+}
+
+.clearBet .cdChipSpan {
+    margin-left: -2px;
+}
+
+.bank,
+.bet {
+    display: inline-block;
+    width: calc(50% - 28px);
+    background-color: #000;
+    font-size: 18px;
+    margin-left: 7px;
+    padding: 5px;
+    border: 4px solid silver;
+    border-radius: 7px;
+    text-align: right;
+}
+
+.pnBlock {
+    position: absolute;
+    border: 1px solid;
+    width: 500px;
+    height: 45px;
+    margin-top: 10px;
+    margin-left: -1px;
+}
+
+#pnContent {
+    border: 4px solid #d5b714;
+    width: 485px;
+    height: 31px;
+    position: relative;
+    display: block;
+    margin-left: 4px;
+    margin-top: 3px;
+    background-color: #fff;
+    color: #000;
+    overflow: hidden;
+}
+
+.pnRed,
+.pnBlack,
+.pnGreen {
+    position: relative;
+    display: inline;
+    padding: 10px;
+    font-size: 19px;
+    top: 5px;
+}
+.pnRed {
+    color: red;
+}
+.pnBlack {
+    color: black;
+}
+.pnGreen {
+    color: green;
+}
+/*betting table end*/
+
+/*wheel*/
+@keyframes wheelRotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}
+@keyframes ballRotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-359deg);
+    }
+}
+
+.wheel {
+    height: 312px;
+    width: 312px;
+    position: relative;
+    margin: 0px auto;
+    -webkit-animation: sectoranim-w1qoghtd 12s linear infinite;
+    animation: sectoranim-w1qoghtd 12s linear infinite;
+}
+@keyframes sectoranim-w1qoghtd {
+    to {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+@-webkit-keyframes sectoranimback-w1qoghtd {
+    to {
+        -webkit-transform: rotate(-360deg);
+        -ms-transform: rotate(-360deg);
+        transform: rotate(-360deg);
+    }
+}
+@keyframes sectoranimback-w1qoghtd {
+    to {
+        -webkit-transform: rotate(-360deg);
+        -ms-transform: rotate(-360deg);
+        transform: rotate(-360deg);
+    }
+}
+.ballTrack {
+    width: 212px;
+    height: 207px;
+    position: absolute;
+    left: 47.5px;
+    top: 53px;
+    border-radius: 100%;
+    z-index: 2;
+}
+
+.ball {
+    background-color: #fff;
+    width: 16px;
+    height: 16px;
+    border-radius: 100%;
+    position: relative;
+    left: 109px;
+    top: -8px;
+}
+.wheelwhl {
+    position: relative;
+    /* padding-bottom: 40px; */
+}
+.turret {
+    border-radius: 100%;
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    top: 80px;
+    /*  left: 42%;*/
+    z-index: 1;
+    width: 100%;
+    text-align: center;
+}
+.turret img {
+    -webkit-animation: sectoranimback-w1qoghtd 8s linear infinite;
+    animation: sectoranimback-w1qoghtd 8s linear infinite;
+}
+@-webkit-keyframes sectoranimback-w1qoghtd {
+    to {
+        -webkit-transform: rotate(-360deg);
+        -ms-transform: rotate(-360deg);
+        transform: rotate(-360deg);
+    }
+}
+@keyframes sectoranimback-w1qoghtd {
+    to {
+        -webkit-transform: rotate(-360deg);
+        -ms-transform: rotate(-360deg);
+        transform: rotate(-360deg);
+    }
+}
+
+.turretHandle {
+    background: radial-gradient(circle at 44%, #f3c620, #6a570f);
+    width: 87px;
+    height: 14px;
+    position: absolute;
+    left: 113px;
+    top: 148px;
+}
+
+.thendOne,
+.thendTwo {
+    border-radius: 100%;
+    background: radial-gradient(circle at 30% 30%, #f3c620, #1a1608);
+    width: 25px;
+    height: 25px;
+    position: absolute;
+}
+
+.thendOne {
+    top: -6px;
+    left: -20px;
+}
+
+.thendTwo {
+    top: -6px;
+    left: 83px;
+}
+
+.outerRim {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 310px;
+    height: 310px;
+    border-radius: 100%;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+    border: 10px solid #282827;
+}
+
+.block {
+    transition: all 1s;
+    position: absolute;
+    width: 290px;
+    height: 290px;
+    border-radius: 100%;
+    clip: rect(0px, 145px, 290px, 0px);
+}
+
+.sect {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 290px;
+    height: 290px;
+    border-radius: 100%;
+    clip: rect(0px, 290px, 290px, 145px);
+}
+
+.double,
+.single {
+    position: absolute;
+    z-index: 1;
+    color: #fff;
+    font-size: 14px;
+    transform: rotate(3deg);
+}
+
+.double {
+    left: 148px;
+    margin-top: 4.5px;
+}
+
+.single {
+    left: 152px;
+    margin-top: 4.5px;
+}
+
+#sect1 .block {
+    background-color: #016d29;
+    transform: rotate(9.73deg);
+}
+
+#sect2 .block,
+#sect4 .block,
+#sect6 .block,
+#sect8 .block,
+#sect10 .block,
+#sect12 .block,
+#sect14 .block,
+#sect16 .block,
+#sect18 .block,
+#sect20 .block,
+#sect22 .block,
+#sect24 .block,
+#sect26 .block,
+#sect28 .block,
+#sect30 .block,
+#sect32 .block,
+#sect34 .block,
+#sect36 .block {
+    background-color: #990b4c;
+    transform: rotate(9.73deg);
+}
+
+#sect3 .block,
+#sect5 .block,
+#sect7 .block,
+#sect9 .block,
+#sect11 .block,
+#sect13 .block,
+#sect15 .block,
+#sect17 .block,
+#sect19 .block,
+#sect21 .block,
+#sect23 .block,
+#sect25 .block,
+#sect27 .block,
+#sect29 .block,
+#sect31 .block,
+#sect33 .block,
+#sect35 .block,
+#sect37 .block {
+    background-color: #232e39;
+    transform: rotate(9.73deg);
+}
+
+#sect2 {
+    transform: rotate(9.73deg);
+}
+
+#sect3 {
+    transform: rotate(19.46deg);
+}
+
+#sect4 {
+    transform: rotate(29.19deg);
+}
+
+#sect5 {
+    transform: rotate(38.92deg);
+}
+
+#sect6 {
+    transform: rotate(48.65deg);
+}
+
+#sect7 {
+    transform: rotate(58.38deg);
+}
+
+#sect8 {
+    transform: rotate(68.11deg);
+}
+
+#sect9 {
+    transform: rotate(77.84deg);
+}
+
+#sect10 {
+    transform: rotate(87.57deg);
+}
+
+#sect11 {
+    transform: rotate(97.3deg);
+}
+
+#sect12 {
+    transform: rotate(107.03deg);
+}
+
+#sect13 {
+    transform: rotate(116.76deg);
+}
+
+#sect14 {
+    transform: rotate(126.49deg);
+}
+
+#sect15 {
+    transform: rotate(136.22deg);
+}
+
+#sect16 {
+    transform: rotate(145.95deg);
+}
+
+#sect17 {
+    transform: rotate(155.68deg);
+}
+
+#sect18 {
+    transform: rotate(165.41deg);
+}
+
+#sect19 {
+    transform: rotate(175.14deg);
+}
+
+#sect20 {
+    transform: rotate(184.87deg);
+}
+
+#sect21 {
+    transform: rotate(194.6deg);
+}
+
+#sect22 {
+    transform: rotate(204.33deg);
+}
+
+#sect23 {
+    transform: rotate(214.06deg);
+}
+
+#sect24 {
+    transform: rotate(223.79deg);
+}
+
+#sect25 {
+    transform: rotate(233.52deg);
+}
+
+#sect26 {
+    transform: rotate(243.25deg);
+}
+
+#sect27 {
+    transform: rotate(252.98deg);
+}
+
+#sect28 {
+    transform: rotate(262.71deg);
+}
+
+#sect29 {
+    transform: rotate(272.44deg);
+}
+
+#sect30 {
+    transform: rotate(282.17deg);
+}
+
+#sect31 {
+    transform: rotate(291.9deg);
+}
+
+#sect32 {
+    transform: rotate(301.63deg);
+}
+
+#sect33 {
+    transform: rotate(311.36deg);
+}
+
+#sect34 {
+    transform: rotate(321.09deg);
+}
+
+#sect35 {
+    transform: rotate(330.82deg);
+}
+
+#sect36 {
+    transform: rotate(340.55deg);
+}
+
+#sect37 {
+    transform: rotate(350.28deg);
+}
+
+.pockets {
+    position: absolute;
+    top: 41px;
+    left: 39px;
+    width: 231px;
+    height: 230px;
+    background-color: #000;
+    border-radius: 100%;
+    opacity: 0.5;
+}
+
+.pocketsRim {
+    position: absolute;
+    top: 38px;
+    left: 37px;
+    width: 235px;
+    height: 235px;
+    border-radius: 100%;
+    border: 3px solid silver;
+}
+
+.cone {
+    position: absolute;
+    top: 65px;
+    left: 66px;
+    height: 180px;
+    width: 180px;
+    border: 3px solid #9f9a9a;
+    border-radius: 100%;
+    background: #17181b;
+}
+/*wheel end*/
+
+/*chip*/
+.chip {
+    width: 25px;
+    height: 25px;
+    background-color: #fff;
+    border: 2px dashed #fff !important;
+    border-radius: 100%;
+    position: absolute;
+    display: none;
+    padding: 2px 0;
+}
+.chip.red {
+    background: #06a0ff;
+}
+.chipselect .chip {
+    display: block;
+}
+
+.chipSpan {
+    color: #fff;
+    font-weight: bold;
+    font-size: 7px;
+    position: relative;
+    display: block;
+    text-align: center;
+    top: 4px;
+}
+.blue {
+    background-color: #520b99 !important;
+}
+.blue .chip {
+    border: 2px dashed #fff;
+}
+
+.chipresult {
+    width: 25px;
+    height: 25px;
+    background-color: #fff;
+    border: 2px dashed #fff !important;
+    border-radius: 100%;
+    position: absolute;
+    display: none;
+    padding: 2px 0;
+    top: 16%;
+    left: 24%;
+}
+
+.chipresult.red {
+    background: #06a0ff;
+}
+.chipresultselect .chipresult {
+    display: block;
+}
+
+.chipSpanresult {
+    color: #fff;
+    font-weight: bold;
+    font-size: 7px;
+    position: relative;
+    display: block;
+    text-align: center;
+    top: 4px;
+}
+.blue {
+    background-color: #520b99 !important;
+}
+.blue .chipresult {
+    border: 2px dashed #fff;
+}
+
+.gold {
+    border-color: gold;
+}
+
+.red {
+    border-color: red;
+}
+
+.orange {
+    border-color: orange;
+}
+
+.blue {
+    border-color: blue;
+}
+
+.tt1_block .chip {
+    margin-left: 19px;
+    margin-top: -24px;
+}
+
+.number_block .chip {
+    margin-left: 7px;
+    margin-top: -24px;
+}
+
+.wlrtl .chip {
+    margin-left: -9px;
+    margin-top: 9px;
+}
+
+.cbbb .chip {
+    margin-left: -4px;
+    margin-top: -5px;
+}
+
+.ttbbetblock .chip {
+    margin-left: -7px;
+    margin-top: -8px;
+}
+
+#wlttb_top .chip {
+    margin-left: -5px;
+    margin-top: -8px;
+}
+
+.bbtoptwo .chip {
+    margin-left: 108px;
+    margin-top: -25px;
+}
+
+.number_0 .chip {
+    margin-left: -8px;
+    margin-top: -22px;
+}
+
+.bo3_block .chip {
+    margin-left: 65px;
+    margin-top: -26px;
+}
+
+.oto_block .chip {
+    margin-left: 45px;
+    margin-top: -25px;
+}
+
+.tt1_block .chipresult {
+    margin-left: 19px;
+    margin-top: -24px;
+}
+
+.number_block .chipresult {
+    margin-left: 7px;
+    margin-top: -24px;
+}
+
+.wlrtl .chipresult {
+    margin-left: -9px;
+    margin-top: 9px;
+}
+
+.cbbb .chipresult {
+    margin-left: -4px;
+    margin-top: -5px;
+}
+
+.ttbbetblock .chipresult {
+    margin-left: -7px;
+    margin-top: -8px;
+}
+
+#wlttb_top .chipresult {
+    margin-left: -5px;
+    margin-top: -8px;
+}
+
+.bbtoptwo .chipresult {
+    margin-left: 108px;
+    margin-top: -25px;
+}
+
+.number_0 .chipresult {
+    margin-left: -8px;
+    margin-top: -22px;
+}
+
+.bo3_block .chipresult {
+    margin-left: 65px;
+    margin-top: -26px;
+}
+
+.oto_block .chipresult {
+    margin-left: 45px;
+    margin-top: -25px;
+}
+/*chip end*/
+
+.coinsub {
+    color: white;
+    font-size: x-large;
+    font-weight: 800;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+.t {
+    font-size: 30px;
+    font-weight: 600;
+}
+.winboxwhl {
+    width: 100%;
+    position: absolute;
+    top: 26%;
+}
+.win-box {
+    width: 300px;
+    position: relative;
+    margin: 0px auto;
+    border: 4px solid #31343c;
+    background: #23262b;
+    z-index: 9;
+}
+.win-box h2 span img {
+    width: 1.4em;
+    height: 1.4em;
+}
+
+.tie-box {
+    width: 222px;
+    position: absolute;
+    top: 30%;
+    left: 31%;
+    border: 4px solid #31343c;
+    background: #23262b;
+    z-index: 9;
+    height: 100px;
+    padding: 25px;
+}
+
+.winner {
+    color: #3bc117 !important;
+}
+
+.looser {
+    color: red !important;
+}
+.lor {
+    background-color: #3bc117 !important;
+    color: white !important;
+}
+
+.fav {
+    color: yellow;
+}
+
+.like {
+    color: red;
+}
+.warn {
+    border: 1px solid #43a528 !important;
+    background: rgb(99 169 2 / 10%) !important;
+    border-radius: 0.125rem;
+    color: #3bc117;
+    padding: 0.75rem 1.25rem;
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+}
+.text-success {
+    color: white !important;
+}
+input,
+textarea,
+a,
+button {
+    font-weight: 400;
+}
+.detailForm {
+    margin-top: 1.375rem;
+}
+.detailForm .title {
+    color: #f5f6f7;
+    line-height: 1;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.detailForm .ui-input {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.detailForm .formFlex {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 1.25rem;
+}
+
+.detailForm .formFlex > div:first-child {
+    -webkit-flex: 6;
+    -ms-flex: 6;
+    flex: 6;
+    margin-right: 10px;
+}
+
+.detailForm .formFlex > div:last-child {
+    -webkit-flex: 4;
+    -ms-flex: 4;
+    flex: 4;
+}
+
+.detailForm .ui-input .input-control input[readonly] {
+    opacity: 1;
+}
+
+.devide {
+    width: 100%;
+    border-bottom: 1px solid #272b30;
+    margin: 1.875rem 0;
+}
+.submit {
+    margin: 1.25rem 0 3.75rem;
+    padding: 0 3.125rem;
+}
+.rotateTable {
+    /*transform: rotate(90deg);*/
+    height: 500px;
+    display: inline-block;
+    transform: scale(0.9);
+}
+@media (max-width: 650px) {
+    .wheelwhl {
+        position: relative;
+        padding-bottom: 40px;
+        top: -70px;
+        transform: scale(0.7);
+    }
+    .number_block {
+        width: 7.9%;
+    }
+    #betting_board {
+        transform: rotate(90deg);
+        max-width: 100%;
+    }
+    .container {
+        overflow: hidden;
+        height: 630px !important;
+    }
+    .tt1_block {
+        margin-left: 100%;
+        display: block;
+    }
+    .addbet .wheelwhl {
+        top: 0px;
+        display: block;
+    }
+    .addbet.container {
+        height: auto;
+    }
+    .addbet #betting_board {
+        display: none;
+    }
+    .wheelwhl {
+        display: none;
+    }
+    #betting_board {
+        margin-top: 25%;
+    }
+    .container {
+        height: 520px !important;
+    }
+    .number_block .chip {
+        margin-left: -4px;
+        margin-top: -21px;
+    }
+    .chip {
+        width: 25px;
+        height: 25px;
+    }
+    .chipSpan {
+        top: 2px;
+    }
+    .tie-box {
+        left: 0px;
+        max-width: 400px;
+        width: 97%;
+        top: 25%;
+    }
+    .win-box {
+        left: 0px;
+        max-width: 400px;
+        width: 97%;
+        top: 25%;
+    }
+    #betting_board {
+        width: 370px;
+    }
+    .cdChipActive::before {
+        top: 4px;
+        left: -8px;
+    }
+}
+@media (max-width: 550px) {
+    #betting_board {
+        margin-top: 30%;
+    }
+}
+
+@media (max-width: 420px) {
+    .number_block {
+        width: 8.5%;
+    }
+    .container {
+        height: 430px !important;
+    }
+    .number_0 {
+        margin-left: -43px;
+        padding: 36.55px 17px;
+    }
+    .tt1_block {
+        margin-top: -28.75px;
+        width: 42px;
+        height: 30px;
+        padding: 5px 5px;
+    }
+    .nbn {
+        font-size: 10px;
+    }
+    .bbtoptwo {
+        font-size: 11px;
+    }
+    .bo3_block,
+    .oto_block {
+        font-size: 11px;
+    }
+    .cdChipActive::before {
+        top: -2px;
+    }
+}
+.hov {
+    cursor: pointer !important;
+}
+
+/*new*/
+
+.ui-dialog > div:last-child {
+    padding: 1.25rem;
+    background-color: var(--35p5sb);
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+.h1yfs6k1 .hotkey-list {
+    margin-top: 0.5rem;
+}
+
+.h1yfs6k1 .hotkey-item {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0 1.25rem;
+    height: 3.5rem;
+    border-radius: 0.25rem;
+    margin-bottom: 0.5rem;
+    background-color: #17181b;
+    color: rgb(153 164 176 / 60%);
+}
+
+.h1yfs6k1 .hotkey-item .hotkey-key {
+    width: 6.25rem;
+    text-align: center;
+    position: relative;
+    font-weight: 600;
+    color: #f5f6f7;
+    padding: 0.5rem 0 0.5rem 1.25rem;
+}
+
+.h1yfs6k1 .hotkey-enabled .hotkey-select {
+    width: 1rem;
+    height: 1rem;
+    border-radius: var(--border-radius);
+    margin-right: 0.5rem;
+    position: relative;
+    background-color: rgb(45 48 53 / 50%);
+    border: 1px solid #2d3035;
+}
+
+/* Fix for layout overlap */
+#betting_board {
+    display: block;
+    height: auto;
+    position: relative;
+    margin-top: 50px; /* Push board down below wheel */
+    clear: both;
+    transform: none; /* Reset rotation by default */
+}
+
+.wheelwhl {
+    display: block;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+/* Ensure media query doesn't break desktop */
+@media (min-width: 651px) {
+    #betting_board {
+        transform: none !important;
+        margin-top: 50px !important;
+        width: 500px !important;
+    }
+}
