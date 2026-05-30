@@ -46,7 +46,6 @@ import { fBalance, formatMoney } from 'utils/format-balance';
 import LoadTable from 'components/load-table';
 import EmptyTable from 'components/empty-table';
 import { fDateTime } from 'utils/format-time';
-import { APP_URL } from 'config';
 
 const DashboardView = () => {
     const { t } = useTranslation();
@@ -79,7 +78,7 @@ const DashboardView = () => {
         code: ''
     });
 
-    const shareLink = useMemo(() => `${APP_URL}/?r=p-${reward.code}`, [reward.code]);
+    const shareLink = useMemo(() => `${window.location.origin}/?r=p-${reward.code}`, [reward.code]);
 
     const loadData = useCallback(async () => {
         setIsLoading(true);

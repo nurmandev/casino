@@ -24,7 +24,7 @@ const GradientPaper = styled(Paper)(({ theme }) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: Number(theme.shape.borderRadius) * 2,
+    borderRadius: (theme.shape.borderRadius as number) * 2,
     overflow: 'hidden'
 }));
 

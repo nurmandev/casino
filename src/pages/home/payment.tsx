@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 
 const PaymentContainer = styled(Box)(({ theme }) => ({
     marginTop: theme.spacing(4),
-    borderRadius: Number(theme.shape.borderRadius) * 2,
+    borderRadius: (theme.shape.borderRadius as number) * 2,
     backgroundColor: theme.palette.mode === 'light' ? 'rgba(255, 255, 255, 0.7)' : 'rgb(23 26 26 / 70%)',
     [theme.breakpoints.up('sm')]: {
         marginTop: theme.spacing(7)
@@ -26,7 +26,7 @@ const CoinContainer = styled(Box)(({ theme }) => ({
 const PaymentCard = styled(Box)(({ theme }) => ({
     position: 'relative',
     height: '96px',
-    borderRadius: Number(theme.shape.borderRadius) * 2,
+    borderRadius: (theme.shape.borderRadius as number) * 2,
     backgroundColor: theme.palette.mode === 'light' ? 'rgba(255, 255, 255, 0.7)' : 'rgb(23 26 26 / 70%)',
     padding: theme.spacing(0, 8)
 }));

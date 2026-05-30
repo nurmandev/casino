@@ -59,9 +59,9 @@ const RecommendGameList = () => {
                     recommendGames.map((item: any, index: number) => (
                         <GameCard
                             key={index}
-                            name={item.game_name}
-                            image={item.ownImg ? ASSETS(item.ownImg) : item.image_url}
-                            href={`/game/${item.game_code}`}
+                            name={item.gameName ? item.gameName : item.game_name}
+                            image={item.image_url ? item.image_url : ASSETS(`${item.gameCode}.webp`)}
+                            href={item.game_code ? `/game/${item.game_code}` : `/ag-game/${item.gameCode}`}
                         />
                     ))
                 ) : (

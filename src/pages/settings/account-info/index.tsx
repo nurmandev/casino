@@ -16,7 +16,7 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
     paddingLeft: theme.spacing(3),
     paddingRight: theme.spacing(3),
     marginBottom: theme.spacing(2),
-    borderRadius: Number(theme.shape.borderRadius) * 2,
+    borderRadius: (theme.shape.borderRadius as number) * 2,
     backgroundColor: theme.palette.background.layer4
 }));
 

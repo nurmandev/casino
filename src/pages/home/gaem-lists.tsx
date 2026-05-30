@@ -14,7 +14,6 @@ import { useResponsive } from 'hooks/use-responsive';
 import { useTranslate } from 'locales';
 // api
 import { casinoApi } from 'api/casino.api';
-import { ASSETS } from 'utils/axios';
 
 export default function GameLists() {
     const { t } = useTranslate();
@@ -107,7 +106,7 @@ export default function GameLists() {
                             >
                                 <Stack sx={{ pr: 0 }} gap={2}>
                                     <Image
-                                        src={item.game.ownImg ? ASSETS(item.game.ownImg) : item.game.image}
+                                        src={item.game.image_url}
                                         sx={{
                                             borderRadius: 2,
                                             display: 'block',
@@ -149,7 +148,7 @@ export default function GameLists() {
                                                 }}
                                                 color="text.primary"
                                             >
-                                                {item.game.name}
+                                                {item.game.game_name}
                                             </Typography>
                                         </Stack>
                                         <Stack

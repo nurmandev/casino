@@ -5,7 +5,7 @@ import Stack from '@mui/material/Stack';
 // config
 import { swiperArray } from 'config/constant';
 // pages
-import { GSCGames } from 'pages/home/gsc-games';
+import { SlotGames } from 'pages/home/slot-games';
 // components
 import ShortGames from 'components/short-games';
 // api
@@ -55,12 +55,7 @@ const Lobby = () => {
             {swiperArray.map((category, index) => {
                 const k = (category as any).key ?? (category as any).value ?? index;
                 return (
-                    <GSCGames
-                        key={`slot-${k}`}
-                        category={category.key || ''}
-                        categoryName={category.value}
-                        viewCount={7}
-                    />
+                    <SlotGames key={`slot-${k}`} category={category.key || ''} categoryName={category.value} viewCount={7} />
                 );
             })}
             {/* <DashTable /> */}

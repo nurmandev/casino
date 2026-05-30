@@ -117,7 +117,7 @@ export default function Chip(theme: Theme) {
             disabledState,
             {
                 fontWeight: 500,
-                borderRadius: Number(theme.shape.borderRadius)
+                borderRadius: theme.shape.borderRadius
             }
         ];
     };

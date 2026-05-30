@@ -6,7 +6,7 @@ import GameCard from 'components/game-card';
 import Pagination from 'components/pagination';
 import { MultiSelect } from 'components/multi-select';
 import { SortSelect } from 'components/sort-select';
-import { getGamesBySearch, getProviderGameList, getProviderList, getSlotGames, getSlotProviders } from 'api';
+import { getProviderGameList, getProviderList, getSlotGames, getSlotProviders } from 'api';
 import { providerType } from 'types/game';
 import { ASSETS } from 'utils/axios';
 
@@ -54,28 +54,17 @@ const GameList = () => {
         try {
             setLoading(true);
 
-            let type = '';
-            if (gameType === 'live') type = 'LIVE_CASINO';
-            else if (gameType === 'fish') type = 'FISHING';
-            else if (gameType === 'poker') type = 'POKER';
-            else if (gameType === 'OTHER')
-                type = 'OTHERS'; // Check static.ts for correct type
-            else type = gameType || ''; // Fallback
+            const response = await getSlotGames({
+                currentPage: currentPage,
+                perPage: 40,
+                categories: gameType === 'OTHER' ? '' : gameType,
+                provider: provider.includes('All') ? undefined : provider
+            });
 
-            // Use getGamesBySearch (GSC) instead of getSlotGames (AG)
-            // searchGames argument signature: name, gameType, currentPage, perPage
-            const response = await getGamesBySearch('', type, currentPage, 40);
-
-            if (response && response.data) {
-                setGames(response.data);
-                setTotalPages(Math.ceil(response.count / 40));
-            } else {
-                setGames([]);
-                setTotalPages(1);
-            }
+            setGames(response.data);
+            setTotalPages(Math.ceil(response.count / 40));
         } catch (error) {
             console.log(error);
-            setGames([]);
         } finally {
             setLoading(false);
         }
@@ -145,12 +134,7 @@ const GameList = () => {
                     ))
                 ) : games.length > 0 ? (
                     games.map((item: any, index: number) => (
-                        <GameCard
-                            key={index}
-                            image={item.ownImg ? ASSETS(item.ownImg) : item.image_url}
-                            name={item.game_name}
-                            href={`/game/${item.game_code}`}
-                        />
+                        <GameCard key={index} image={item.image} name={item.name} href={`/ag-game/${item.id}`} />
                     ))
                 ) : (
                     <Stack

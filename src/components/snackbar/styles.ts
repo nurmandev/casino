@@ -16,7 +16,7 @@ export const StyledNotistack = styled(MaterialDesignContent)(({ theme }) => {
         '&.notistack-MuiContent': {
             color: theme.palette.text.primary,
             boxShadow: theme.customShadows.z8,
-            borderRadius: Number(theme.shape.borderRadius),
+            borderRadius: theme.shape.borderRadius,
             padding: theme.spacing(0.5, 2, 0.5, 0.5),
             backgroundColor: theme.palette.background.paper
         },
@@ -46,6 +46,6 @@ export const StyledIcon = styled('span')<StyledIconProps>(({ color, theme }) => 
     justifyContent: 'center',
     marginRight: theme.spacing(1.5),
     color: theme.palette[color].main,
-    borderRadius: Number(theme.shape.borderRadius),
+    borderRadius: theme.shape.borderRadius,
     backgroundColor: alpha(theme.palette[color].main, 0.16)
 }));

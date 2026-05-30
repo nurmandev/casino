@@ -29,7 +29,7 @@ export default function Autocomplete(theme: Theme) {
                         textAlign: 'center',
                         padding: theme.spacing(0, 0.75),
                         color: theme.palette.text.secondary,
-                        borderRadius: Number(theme.shape.borderRadius),
+                        borderRadius: theme.shape.borderRadius,
                         backgroundColor: alpha(theme.palette.grey[500], 0.16)
                     }
                 },

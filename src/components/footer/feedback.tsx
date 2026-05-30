@@ -51,16 +51,16 @@ const Feedback: React.FC = () => {
                     <Typography color="text.secondary" sx={{ fontSize: '0.875rem', lineHeight: '1.25rem' }}>
                         Email us:
                         <Link
-                            href="mailto:feedback@shivaspins.com"
+                            href="mailto:feedback@87casino.com"
                             sx={{ ml: 1, color: 'brand.main', textDecoration: 'underline' }}
                         >
-                            feedback@shivaspins.com
+                            feedback@87casino.com
                         </Link>
                     </Typography>
                 </Box>
                 <Box>
                     <Typography color="text.secondary" sx={{ fontSize: '0.875rem', lineHeight: '1.25rem' }}>
-                        If you find any vulnerabilities or leaks, please contact us at security@shivaspins.com
+                        If you find any vulnerabilities or leaks, please contact us at security@87casino.com
                         (security-related issues only; non-related issues will be omitted).
                     </Typography>
                 </Box>
@@ -68,10 +68,10 @@ const Feedback: React.FC = () => {
                     <Typography color="text.secondary" sx={{ fontSize: '0.875rem', lineHeight: '1.25rem' }}>
                         Security email:
                         <Link
-                            href="mailto:security@shivaspins.com"
+                            href="mailto:security@87casino.com"
                             sx={{ ml: 1, color: 'brand.main', textDecoration: 'underline' }}
                         >
-                            security@shivaspins.com
+                            security@87casino.com
                         </Link>
                     </Typography>
                 </Box>

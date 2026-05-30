@@ -7,7 +7,7 @@ import { _gameDetail } from '_mock';
 const GameDetailContainer = styled(Box)(({ theme }) => ({
     padding: theme.spacing(2.5),
     backgroundColor: theme.palette.background.layer3,
-    borderRadius: Number(theme.shape.borderRadius) * 2
+    borderRadius: (theme.shape.borderRadius as number) * 2
 }));
 
 const GameTitle = styled(Typography)(() => ({
@@ -20,7 +20,7 @@ const GameDetail = ({ gameData }: { gameData: any }) => {
         <GameDetailContainer>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                    <GameTitle>{gameData?.name}</GameTitle>
+                    <GameTitle>{gameData?.gameName}</GameTitle>
                     {gameData.provider && (
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, whiteSpace: 'nowrap', mr: 1 }}>
                             <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 600 }}>

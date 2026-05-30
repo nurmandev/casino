@@ -21,12 +21,11 @@ export const tabs = [
         value: 'slot',
         label: 'Slots'
     },
-    {
-        icon: <Image src="/assets/icons/bc-original.svg" alt="bc-original" width={18} height={18} />,
-        value: 'LOTTERY',
-        label: 'lottery'
-    },
-
+    // {
+    //     icon: <Image src="/assets/icons/bc-original.svg" alt="bc-original" width={18} height={18} />,
+    //     value: 'LOTTERY',
+    //     label: 'lottery'
+    // },
     // {
     //     icon: <Image src="/assets/icons/lobby.svg" alt="lobby" width={18} height={18} />,
     //     value: 'QIPAI',
@@ -69,6 +68,117 @@ export const tabs = [
     // }
 ];
 
+export const headerTabs = [
+    {
+        icon: '/img/header/casino.png',
+        label: 'Casino',
+        path: '/casino'
+    },
+    {
+        icon: '/img/header/slots.png',
+        label: 'Slots',
+        path: '/slots'
+    },
+    {
+        icon: '/img/header/racing.png',
+        label: 'Racing',
+        path: '/racing'
+    },
+    {
+        icon: '/img/header/bitup.png',
+        label: 'BitUp Game',
+        path: '/bitup'
+    }
+];
+
+export const sidebarConfig = [
+    {
+        type: 'button',
+        name: 'Bonus',
+        // path: '/bonus',
+        image: '/assets/images/bonus-chest.png' // We will need to mock this or use CSS
+    },
+    {
+        type: 'row',
+        items: [
+            { name: 'Quest', icon: '🎯', path: '/quest', color: '#6a0dad' },
+            { name: 'Spin', icon: '🎡', path: '/spin', color: '#a020f0' }
+        ]
+    },
+    {
+        type: 'banner',
+        image: '/assets/images/sidebar-banner.png'
+    },
+    {
+        name: 'Casino',
+        type: 'item',
+        icon: {
+            path: '/assets/icons/icons-1.webp',
+            active: '/assets/icons/icons-1.webp',
+            x: -96,
+            y: 0
+        },
+        path: '/casino',
+        children: [
+            {
+                name: 'Pick For You',
+                icon: { path: '/assets/icons/icons-5.webp', x: -128, y: -224 }, // Placeholder coords
+                path: '/pick-for-you'
+            },
+            {
+                name: 'Favorites',
+                icon: { path: '/assets/icons/icons-5.webp', x: -194, y: -32 },
+                path: '/favorites'
+            },
+            {
+                name: 'Recent',
+                icon: { path: '/assets/icons/icons-5.webp', x: -160, y: -192 },
+                path: '/recent'
+            },
+            {
+                name: 'Live Casino',
+                icon: { path: '/assets/icons/icons-5.webp', x: -160, y: -192 },
+                path: '/live-casino'
+            },
+            {
+                name: 'Hot Games',
+                icon: { path: '/assets/icons/icons-5.webp', x: -194, y: -32 },
+                path: '/hot-games'
+            },
+            {
+                name: 'New Releases',
+                icon: { path: '/assets/icons/icons-5.webp', x: -160, y: -192 }, // Placeholder
+                path: '/new-releases'
+            },
+            {
+                name: 'Feature Buy-In',
+                icon: { path: '/assets/icons/icons-5.webp', x: -160, y: -192 }, // Placeholder
+                path: '/feature-buy-in'
+            },
+            {
+                name: 'Blackjack',
+                icon: { path: '/assets/icons/icons-5.webp', x: -160, y: -192 }, // Placeholder
+                path: '/blackjack'
+            },
+            {
+                name: 'Table Games',
+                icon: { path: '/assets/icons/icons-5.webp', x: -256, y: -64 },
+                path: '/table-games'
+            }
+        ]
+    },
+    {
+        name: 'Up & Down',
+        type: 'item',
+        icon: {
+            path: '/assets/icons/icons-1.webp',
+            x: -160,
+            y: -160
+        },
+        path: '/up-down'
+    }
+];
+
 export const casinoMenus = [
     {
         name: 'casino',
@@ -108,7 +218,7 @@ export const casinoMenus = [
                     x: -128,
                     y: -224
                 },
-                path: '/casino/SLOT'
+                path: '/casino/slot?type=Slots'
             },
             // {
             //     name: 'lottery',

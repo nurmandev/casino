@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 
-import { getSlotGames } from 'api';
+import { getProviderGameList } from 'api';
 import GameCard from 'components/game-card';
 import CustomSwiper from 'components/swiper';
 import { ASSETS } from 'utils/axios';
@@ -19,10 +19,11 @@ export default function ShortGames({ category, categoryName, viewCount }: Custom
     const getGameList = async () => {
         try {
             setLoading(true);
-            const gameList = await getSlotGames({
+            const gameList = await getProviderGameList({
+                productIds: [],
                 currentPage: 1,
                 perPage: 15,
-                categories: category
+                gameType: category
             });
 
             setGames(gameList.data);
@@ -43,7 +44,12 @@ export default function ShortGames({ category, categoryName, viewCount }: Custom
             loading={loading}
             data={games.map((item: any, index: number) => (
                 <Box key={index} sx={{ borderRadius: 2, overflow: 'hidden' }}>
-                    <GameCard key={index} image={item.image} name={item.name} href={`/ag-game/${item.id}`} />
+                    <GameCard
+                        key={index}
+                        image={item.ownImg ? ASSETS(item.ownImg) : item.image_url}
+                        name={item.game_name}
+                        href={`/game/${item.game_code}`}
+                    />
                 </Box>
             ))}
             title={categoryName}

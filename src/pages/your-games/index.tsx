@@ -82,17 +82,13 @@ const YourGames = () => {
                             image={
                                 item.gameDetails.ownImg
                                     ? ASSETS(item.gameDetails.ownImg)
-                                    : item.gameDetails.image ||
-                                      item.gameDetails.image_url ||
-                                      ASSETS(`${item.gameDetails.gameCode}.webp`)
+                                    : item.gameDetails.image_url || ASSETS(`${item.gameDetails.gameCode}.webp`)
                             }
-                            name={item.gameDetails.name || item.gameDetails.game_name || item.gameDetails.gameName}
+                            name={item.gameDetails.game_name || item.gameDetails.gameName}
                             href={
-                                item.gameDetails.id
-                                    ? `/ag-game/${item.gameDetails.id}`
-                                    : item.gameDetails.gameCode
-                                      ? `/ag-game/${item.gameDetails.gameCode}`
-                                      : `/game/${item.gameDetails.game_code}`
+                                item.gameDetails.gameCode
+                                    ? `/ag-game/${item.gameDetails.gameCode}`
+                                    : `/game/${item.gameDetails.game_code}`
                             }
                         />
                     ))

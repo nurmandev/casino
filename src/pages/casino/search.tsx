@@ -1,5 +1,5 @@
 import { Stack, TextField, InputAdornment, Paper, Typography, Button, Chip } from '@mui/material';
-import { getGamesBySearch } from 'api';
+import { getSlotGames } from 'api';
 import { SUGGESTED } from 'config';
 import { SearchIcon } from 'icons';
 import { IGameList } from 'pages/explore';
@@ -23,7 +23,11 @@ function Search({
     const getGameLists = async () => {
         try {
             setLoading(true);
-            const response = await getGamesBySearch(search, '', 1, 48);
+            const response = await getSlotGames({
+                categories: search,
+                perPage: 48,
+                currentPage: 1
+            });
             setGameList(response.data);
         } catch (error: any) {
             console.log('Getting Game List Error:', error.message);

@@ -17,7 +17,7 @@ import {
 } from 'store/slices/auth';
 import { updateDeafultData, updateRecommendGames } from 'store/slices/setting';
 // api
-import { getGamesBySearch, getUserBalance } from 'api';
+import { getUserBalance } from 'api';
 import { casinoApi } from 'api/casino.api';
 import { settingApi } from 'api/setting.api';
 import { notificationApi } from 'api/notification.api';
@@ -45,15 +45,10 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
     const loadRecommendGames = async () => {
         try {
-            // Fetch GSC games instead of AG Soft for recommendations
-            // Using getGamesBySearch to get popular/default games
-            const response = await getGamesBySearch('', '', 1, 10);
-            if (response && response.data) {
-                dispatch(updateRecommendGames(response.data));
-            }
+            const data = await casinoApi.getRecommendGames();
+            dispatch(updateRecommendGames(data));
         } catch (error) {
             console.log('error');
-            dispatch(updateRecommendGames([]));
         }
     };
 

@@ -7,7 +7,7 @@ import { _gameDetail } from '_mock';
 const GameDetailContainer = styled(Box)(({ theme }) => ({
     padding: theme.spacing(2.5),
     backgroundColor: theme.palette.background.layer3,
-    borderRadius: Number(theme.shape.borderRadius) * 2
+    borderRadius: (theme.shape.borderRadius as number) * 2
 }));
 
 const GameTitle = styled(Typography)(() => ({

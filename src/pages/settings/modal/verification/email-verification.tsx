@@ -15,7 +15,6 @@ import { useBoolean } from 'hooks/use-boolean';
 // store
 import { dispatch } from 'store/store';
 import { updateUserAction } from 'store/slices/auth';
-import { APP_URL } from 'config';
 
 const StyledEmailIcon = styled(EmailIcon)(({ theme }) => ({
     width: 32,
@@ -132,7 +131,7 @@ const EmailVerification = ({ setOpen }: { setOpen: (open: string | null) => void
                             return `Please enter the 6-digit verification code sent to ${email}`;
                         }
                         if (email) {
-                            return `According to the security policy of ${APP_URL}, the registered email cannot be changed.`;
+                            return `According to the security policy of 87CASINO.COM, the registered email cannot be changed.`;
                         }
                         return t('please_enter_and_verify_your_email_below');
                     })()}

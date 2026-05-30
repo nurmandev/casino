@@ -23,7 +23,7 @@ const StyledTextField = styled(TextField)(({ theme }) => ({
     '& .MuiOutlinedInput-root': {
         backgroundColor: theme.palette.background.layer4,
         padding: '0 8px',
-        borderRadius: Number(theme.shape.borderRadius) * 2,
+        borderRadius: (theme.shape.borderRadius as number) * 2,
         '& fieldset': {
             borderColor: '#3a4142'
         },

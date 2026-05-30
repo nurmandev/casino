@@ -14,7 +14,7 @@ const StyledBox = styled(Box)(({ theme }) => ({
     padding: '16px',
     backgroundImage: 'linear-gradient(rgba(255, 130, 15, 0.5) 30%, transparent 100%)',
     backgroundColor: theme.palette.background.layer2,
-    borderRadius: Number(theme.shape.borderRadius) * 3,
+    borderRadius: (theme.shape.borderRadius as number) * 3,
     [theme.breakpoints.up('sm')]: {
         margin: 0,
         padding: '44px 48px'

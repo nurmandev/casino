@@ -15,11 +15,10 @@ import { ASSETS } from 'utils/axios';
 const BannerContainer = styled(Box)(({ theme }) => ({
     position: 'relative',
     overflow: 'hidden',
-    borderRadius: Number(theme.shape.borderRadius) * 1.5,
+    borderRadius: (theme.shape.borderRadius as number) * 1.5,
     background: `linear-gradient(261deg, ${theme.palette.background.layer4} 70.44%, rgb(96, 104, 105) 128.85%)`,
     backgroundSize: 'cover',
     backgroundRepeat: 'repeat-x',
-    maxHeight: '200px',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -64,7 +63,7 @@ const ContentContainer = styled(Stack, {
 }));
 
 const PromoBox = styled(Box)(({ theme }) => ({
-    borderRadius: Number(theme.shape.borderRadius) * 1.5,
+    borderRadius: (theme.shape.borderRadius as number) * 1.5,
     marginTop: theme.spacing(1.5),
     padding: 0,
     [theme.breakpoints.up('sm')]: {
@@ -155,6 +154,7 @@ const Banner = () => {
                     sx={{
                         width: 1,
                         m: 0,
+                        mt: { xs: 2.5, sm: 4 },
                         p: 0,
                         '& .slick-dots': {
                             bottom: -12
@@ -188,7 +188,7 @@ const Banner = () => {
                     </Slider>
                 </Stack>
             ) : (
-                <BannerContainer sx={{ maxHeight: isMobile ? 180 : 400, mb: 2, aspectRatio: isMobile ? '1.7' : '4.6' }}>
+                <BannerContainer sx={{ maxHeight: isMobile ? 180 : 400, aspectRatio: isMobile ? '1.7' : '4.6', mb: 2, mt: { xs: 2.5, sm: 4 } }}>
                     {!isMobile && <BannerImage2 src={'/assets/images/home/players-banner_2.webp'} alt="Banner" />}
                     <BannerImage
                         src={
@@ -251,8 +251,6 @@ const Banner = () => {
                                     fontSize: isMobile ? '1rem' : '1.125rem',
                                     fontWeight: '600'
                                 }}
-                                // variant={isMobile ? 'body2' : 'h3'}
-                                // fontWeight={600}
                             >
                                 {t('inCasinoOrSports')}
                             </Typography>
@@ -260,8 +258,6 @@ const Banner = () => {
                         <StyledButton
                             sx={{
                                 borderRadius: 2,
-                                // width: { xs: '103px', md: '156px' },
-                                // height: { xs: '32px', md: '56px' },
                                 color: '#232626',
                                 fontWeight: '600',
                                 marginTop: 'auto',
@@ -276,7 +272,6 @@ const Banner = () => {
                             {t('joinNow')}
                         </StyledButton>
                     </Stack>
-                    {/* </ContentContainer> */}
                 </BannerContainer>
             )}
         </>

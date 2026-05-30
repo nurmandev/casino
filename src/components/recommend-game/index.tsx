@@ -152,9 +152,9 @@ const RecommendSlider = () => {
                             <Box key={itemIndex} sx={{ borderRadius: 2, overflow: 'hidden' }}>
                                 <GameCard
                                     key={itemIndex}
-                                    name={item.game_name}
-                                    image={item.ownImg ? ASSETS(item.ownImg) : item.image_url}
-                                    href={`/game/${item.game_code}`}
+                                    name={item.gameName ? item.gameName : item.game_name}
+                                    image={item.ownImg ? ASSETS(item.ownImg) : item.image_url || ASSETS(item.gameCode)}
+                                    href={item.game_code ? `/game/${item.game_code}` : `/ag-game/${item.gameCode}`}
                                 />
                             </Box>
                         </SwiperSlide>

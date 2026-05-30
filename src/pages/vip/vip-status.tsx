@@ -43,7 +43,7 @@ const VipContent = styled(Box)(({ theme }) => ({
     display: 'flex',
     flexDirection: 'column',
     overflow: 'hidden',
-    borderRadius: Number(theme.shape.borderRadius) * 3,
+    borderRadius: (theme.shape.borderRadius as number) * 3,
     backgroundImage: 'linear-gradient(-12deg, transparent 28%, rgba(113, 113, 113, 0.5) 82%)',
     boxShadow: theme.shadows[1],
     [theme.breakpoints.up('sm')]: {
@@ -70,7 +70,7 @@ const VipProgress = styled(Box)(({ theme }) => ({
     display: 'flex',
     flexDirection: 'column',
     gap: theme.spacing(1.5),
-    borderRadius: Number(theme.shape.borderRadius),
+    borderRadius: theme.shape.borderRadius,
     padding: theme.spacing(2),
     backgroundImage:
         theme.palette.mode === 'dark'

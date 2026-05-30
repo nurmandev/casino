@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-import { keyframes } from '@mui/system';
+import { keyframes } from '@mui/material';
 import sukunaLaugh from 'assets/sukunaLaugh.svg';
 
 const popupAnim = keyframes`

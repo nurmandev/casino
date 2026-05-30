@@ -56,11 +56,11 @@ const GREY = {
 //     contrastText: '#FFFFFF'
 // };
 const PRIMARY = {
-    lighter: '#1dca6a',
-    light: '#9fe871',
-    main: '#24ee89',
-    dark: '#23ee884d',
-    darker: '#2c5040',
+    lighter: '#CDF4FF',
+    light: '#58D6FF',
+    main: '#00BAE6',
+    dark: '#006C9C',
+    darker: '#003768',
     contrastText: '#FFFFFF'
 };
 
@@ -186,40 +186,35 @@ export function palette(mode: 'light' | 'dark') {
             disabled: GREY[600]
         },
         background: {
-            border: '#353b3c',
-            card: 'rgb(23 26 26)',
-            button1: '#232626',
-            paper: GREY[800],
-            default: '#232626',
-            // layer1: '#232626',
-            // layer2: '#323738',
-            // layer3: '#294245',
-            // layer4: '#232626',
-            // layer5: '#3A3D42',
-            layer1: 'rgb(30 33 33)',
-            layer2: 'rgb(35 38 38)',
-            layer3: 'rgb(41 45 46)',
-            layer4: 'rgb(50 55 56)',
-            layer5: 'rgb(58 65 66)',
-            layer6: 'rgb(74 83 84)',
-            footer: '#1e2121',
-            button: '#294245',
-            brightButton: '#464f50',
+            border: '#1E2738',
+            card: '#0E1627',
+            button1: '#141D30',
+            paper: '#0E1627',
+            default: '#070F1E',
+            layer1: '#0E1627',
+            layer2: '#141D30',
+            layer3: '#1B253A',
+            layer4: '#222D44',
+            layer5: '#29354E',
+            layer6: '#303E58',
+            footer: '#070F1E',
+            button: '#1B253A',
+            brightButton: '#222D44',
             neutral: GREY[200],
-            sidebarCell: '#323738',
-            sidebarCellExpanded: 'rgba(255, 255, 255, .05);',
-            listArrow: '#464f50',
-            site: '#232626',
-            tab: '#323738',
-            seletedTab: '#294245',
-            tableContainer: '#323738',
-            banner: '#00000033',
+            sidebarCell: '#141D30',
+            sidebarCellExpanded: '#1B253A',
+            listArrow: '#222D44',
+            site: '#070F1E',
+            tab: '#141D30',
+            seletedTab: '#1B253A',
+            tableContainer: '#141D30',
+            banner: '#00000066',
             modal: 'transparent'
         },
         action: {
             ...COMMON.action,
             active: GREY[500],
-            button: lighten('#3a4142', 0.05)
+            button: lighten('#1B253A', 0.1)
         }
     };
 

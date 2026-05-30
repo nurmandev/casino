@@ -36,7 +36,7 @@ const CustomSwiper: React.FC<CustomSwiperProps> = ({ index, title, data, viewCou
 
     const responsiveViewCount = isMobile ? 3 : isTablet ? Math.round((viewCount / 3) * 2) : viewCount;
 
-    const totalSlides = data ? data.length : 0;
+    const totalSlides = data.length;
     const prevButtonClass = `swiper-prev-button-${index}`;
     const nextButtonClass = `swiper-next-button-${index}`;
 
@@ -63,7 +63,7 @@ const CustomSwiper: React.FC<CustomSwiperProps> = ({ index, title, data, viewCou
         '&:hover': { bgcolor: 'action.button', boxShadow: 'none' }
     } as const;
 
-    if (!data || !data.length) {
+    if (!data.length) {
         return (
             <Stack direction="column" gap={1} mt={3}>
                 <Typography sx={{ fontSize: '16px', fontWeight: 800, textTransform: 'uppercase' }}>

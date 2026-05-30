@@ -13,7 +13,7 @@ export default function Accordion(theme: Theme) {
                     backgroundColor: 'transparent',
                     [`&.${accordionClasses.expanded}`]: {
                         boxShadow: theme.customShadows.z8,
-                        borderRadius: Number(theme.shape.borderRadius),
+                        borderRadius: theme.shape.borderRadius,
                         backgroundColor: theme.palette.background.paper
                     },
                     [`&.${accordionClasses.disabled}`]: {

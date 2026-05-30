@@ -17,7 +17,7 @@ export const SocialLoginButton = styled(IconButton)(({ theme }) => ({
     height: '40px',
     border: '1px solid',
     borderColor: theme.palette.divider,
-    borderRadius: Number(theme.shape.borderRadius) * 2,
+    borderRadius: (theme.shape.borderRadius as number) * 2,
     padding: 0,
     '&:hover': {
         backgroundColor: theme.palette.action.hover

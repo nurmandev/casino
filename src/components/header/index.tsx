@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 // @mui
 import { Box, Button, Stack, Typography, useTheme, IconButton, Popover, Badge } from '@mui/material';
 // hook
-import { useRouter } from 'routes/hook';
+import { usePathname, useRouter } from 'routes/hook';
 import { useAuth } from 'hooks/use-auth-context';
 import { useResponsive } from 'hooks/use-responsive';
 // locales
@@ -21,6 +21,7 @@ import { useSelector } from 'store/store';
 import { fBalance } from 'utils/format-balance';
 //
 import AccountPopover from './account-popover';
+import { headerTabs } from 'data';
 
 const Header = ({
     onHandleNav,
@@ -31,6 +32,7 @@ const Header = ({
 }) => {
     const theme = useTheme();
     const router = useRouter();
+    const pathname = usePathname();
     const { t } = useTranslate();
     const { isLogined, user } = useAuth();
     const isMobile = useResponsive('down', 'sm');
@@ -74,233 +76,290 @@ const Header = ({
                 left: 0,
                 right: 0,
                 zIndex: 1201,
-                height: '3.5rem',
+                height: '70px',
                 alignItems: 'center',
-                boxShadow: '#0000000d 0px 4px 8px 0px',
-                bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'background.default' : '#fff')
+                boxShadow: 'none',
+                borderBottom: '1px solid',
+                borderColor: 'background.border',
+                bgcolor: 'background.layer1',
+                backdropFilter: 'blur(6px)'
             }}
         >
             <Stack
+                direction="row"
+                justifyContent="space-between"
+                alignItems="center"
                 sx={{
                     width: 1,
-                    height: '3.5rem',
-                    alignItems: 'center',
-                    boxShadow: '#0000000d 0px 4px 8px 0px',
-                    backgroundColor: 'background.layer3'
+                    height: 1,
+                    px: { xs: 2, md: 3, lg: 4 },
+                    maxWidth: 1600,
+                    mx: 'auto'
                 }}
             >
-                <Stack
-                    direction="row"
-                    justifyContent="space-between"
-                    sx={{ width: 1, height: 1, flex: 1, px: { xs: '0.5rem', sm: '1rem' } }}
-                >
-                    <Stack direction="row" sx={{ flex: '0 0 auto', alignItems: 'center' }}>
-                        <Button sx={commonButtonStyle} onClick={onHandleNav}>
-                            <Box
-                                sx={{
-                                    width: 32,
-                                    height: 32,
-                                    transform: 'scale(0.75)',
-                                    backgroundRepeat: 'no-repeat',
-                                    backgroundPosition: theme.palette.mode === 'dark' ? '-160px 0px' : '-128px -128px',
-                                    backgroundImage: 'url(/assets/icons/icons-1.webp)'
-                                }}
-                            />
-                        </Button>
+                {/* Left Section: Mobile Menu, Logo, Desktop Tabs */}
+                <Stack direction="row" alignItems="center" spacing={2}>
+                    <IconButton
+                        onClick={onHandleNav}
+                        sx={{
+                            display: { lg: 'none' },
+                            color: 'text.secondary'
+                        }}
+                    >
                         <Box
-                            component="img"
-                            src="/logo.webp"
-                            onClick={() => router.push('/')}
                             sx={{
-                                ml: { xs: 0, sm: '1.25rem' },
-                                height: { xs: '28px', sm: '2rem' },
-                                width: 'auto',
-                                cursor: 'pointer'
+                                width: 24,
+                                height: 24,
+                                background: `url(/assets/icons/icons-1.webp) -128px -128px no-repeat`, // Menu icon
+                                backgroundSize: 'cover', // Adjust if sprite needs scaling
+                                transform: 'scale(1)'
                             }}
                         />
-                    </Stack>
+                    </IconButton>
 
-                    <Stack direction="row" justifyContent="center" alignItems="center" width={1}>
-                        <Stack
-                            direction="row"
-                            justifyContent="center"
-                            alignItems="center"
-                            sx={{ width: 1, maxWidth: 1248, px: { xs: 0, sm: 2 } }}
-                        >
-                            <Stack
-                                direction="row"
-                                spacing={{ xs: 0.5, sm: 1.5 }}
-                                alignItems="center"
-                                justifyContent="flex-end"
-                                sx={{ flex: 1, width: 1 }}
-                            >
-                                {isLogined && (
-                                    <>
-                                        {!isMobile && (
-                                            <Button sx={commonButtonStyle}>
-                                                <SearchIcon
-                                                    sx={{ color: 'text.secondary' }}
-                                                    onClick={() => onToggleModal('EXPLORE')}
-                                                />
-                                            </Button>
-                                        )}
-                                        <Stack
-                                            direction="row"
-                                            justifyContent="space-between"
-                                            spacing={0.5}
-                                            ref={anchorBalanceEl2}
-                                            sx={(theme) => ({
-                                                p: { md: '3px', xs: '2px' },
-                                                height: { md: '40px', xs: '38px' },
-                                                border: `2px solid ${theme.palette.divider}`,
-                                                borderRadius: 2,
-                                                width: { md: '16.5rem', xs: '7.5rem' }
-                                            })}
-                                        >
-                                            <Stack
-                                                direction="row"
-                                                justifyContent="flex-start"
-                                                alignItems="center"
-                                                sx={{ flex: 1 }}
-                                                spacing={{ md: 1, xs: 0.5 }}
-                                                onClick={anchorBalanceOpen}
-                                            >
-                                                <Box
-                                                    component="img"
-                                                    src={balance.icon || null}
-                                                    alt="usd"
-                                                    sx={{ width: { md: 22, xs: '18px' }, height: { md: 20, xs: 16 } }}
-                                                />
-                                                <Typography
-                                                    sx={{ fontWeight: 600, fontSize: { md: '18px', xs: '12px' } }}
-                                                >
-                                                    {balance.amount.toFixed(2)}
-                                                </Typography>
-                                                <ArrowDropDownIcon sx={{ ml: 'auto' }} />
-                                            </Stack>
-                                            <ColorButton
-                                                onClick={() => onToggleModal('DEPOSIT')}
-                                                sx={{
-                                                    height: '1.8rem',
-                                                    fontSize: { md: '14px', xs: '10px' },
-                                                    px: { md: 2, xs: 0 },
-                                                    minWidth: { md: '64px', xs: '30px' },
-                                                    width: 'auto'
-                                                }}
-                                            >
-                                                {isMobile ? <Add /> : t('deposit')}
-                                            </ColorButton>
-                                            {anchorBalanceEl2.current && (
-                                                <Popover
-                                                    open={showBalance}
-                                                    anchorEl={anchorBalanceEl2.current}
-                                                    onClose={handleBalanceClose}
-                                                    sx={{
-                                                        top: 2,
-                                                        '& .MuiPopover-paper': {
-                                                            bgcolor: 'background.layer3',
-                                                            minWidth: 250,
-                                                            width: anchorBalanceEl2.current?.clientWidth + 4,
-                                                            p: 1
-                                                        }
-                                                    }}
-                                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-                                                    transformOrigin={{ vertical: 'top', horizontal: 'left' }}
-                                                >
-                                                    <Stack direction="row" justifyContent="space-between">
-                                                        <Typography variant="body2">Main :</Typography>
-                                                        <Typography variant="body2">
-                                                            {`${fBalance(balance.amount)} ${user?.currency}`}
-                                                        </Typography>
-                                                    </Stack>
-                                                    <Stack direction="row" justifyContent="space-between">
-                                                        <Typography variant="body2">Bonus :</Typography>
-                                                        <Typography variant="body2">
-                                                            {`${fBalance(balance.bonus)} ${user?.currency}`}
-                                                        </Typography>
-                                                    </Stack>
-                                                    <Stack direction="row" justifyContent="space-between">
-                                                        <Typography variant="body2">Withdrawable :</Typography>
-                                                        <Typography variant="body2">
-                                                            {`${fBalance(balance.withdrawable)} ${user?.currency}`}
-                                                        </Typography>
-                                                    </Stack>
-                                                    {!!balance.pending && (
-                                                        <Stack direction="row" justifyContent="space-between">
-                                                            <Typography variant="body2">Pending :</Typography>
-                                                            <Typography variant="body2">
-                                                                {`${fBalance(balance.pending)} ${user?.currency}`}
-                                                            </Typography>
-                                                        </Stack>
-                                                    )}
-                                                </Popover>
-                                            )}
-                                        </Stack>
-                                    </>
-                                )}
-                                {!isLogined && (
-                                    <>
-                                        <IconButton
-                                            sx={commonButtonStyle}
-                                            onClick={() => {
-                                                onToggleModal('EXPLORE');
-                                            }}
-                                        >
-                                            <SearchIcon sx={{ color: 'text.secondary' }} />
-                                        </IconButton>
-                                        <Button
-                                            variant="outlined"
-                                            sx={{
-                                                color: 'text.primary',
-                                                border: '2px solid #e4eaf019',
-                                                px: '1rem',
-                                                borderRadius: '0.5rem',
-                                                height: { xs: '2.25rem', sm: '2.5rem' },
-                                                textTransform: 'capitalize',
-                                                '&:hover': {
-                                                    backgroundColor: 'transparent',
-                                                    borderColor: '#e4eaf019',
-                                                    boxShadow: 'none'
-                                                },
-                                                whiteSpace: 'nowrap'
-                                            }}
-                                            onClick={() => onToggleModal('SIGNIN')}
-                                        >
-                                            {t('Sign in')}
-                                        </Button>
-                                        <ColorButton
-                                            sx={{ height: { xs: '2.25rem', sm: '2.5rem' }, whiteSpace: 'nowrap' }}
-                                            onClick={() => onToggleModal('SIGNUP')}
-                                        >
-                                            {t('Sign up')}
-                                        </ColorButton>
-                                    </>
-                                )}
-                                <Box
+                    <Box
+                        component="img"
+                        src="/logo.webp"
+                        onClick={() => router.push('/')}
+                        sx={{
+                            height: { xs: 32, md: 40 },
+                            cursor: 'pointer',
+                            display: 'block'
+                        }}
+                    />
+
+                    {/* Desktop Navigation Tabs */}
+                    <Stack
+                        direction="row"
+                        spacing={1}
+                        sx={{
+                            display: { xs: 'none', lg: 'flex' },
+                            ml: 4
+                        }}
+                    >
+                        {headerTabs.map((tab) => {
+                            const isActive = pathname === tab.path;
+                            return (
+                                <Stack
+                                    key={tab.label}
+                                    direction="row"
+                                    alignItems="center"
+                                    onClick={() => router.push(tab.path)}
+                                    spacing={1}
                                     sx={{
-                                        display: 'flex',
-                                        alignItems: 'center',
+                                        cursor: 'pointer',
+                                        px: 2,
+                                        py: 1,
                                         borderRadius: 2,
-                                        gap: { md: 1, xs: 0.5 }
+                                        transition: 'all 0.2s',
+                                        bgcolor: isActive ? 'background.layer3' : 'transparent',
+                                        '&:hover': {
+                                            bgcolor: 'background.layer3',
+                                            '& .label': { color: 'primary.main' }
+                                        }
                                     }}
                                 >
-                                    {!isMobile && (
-                                        <IconButton sx={commonButtonStyle} onClick={() => onToggleModal('LANGUAGE')}>
-                                            <WorldIcon sx={{ color: 'text.secondary' }} />
-                                        </IconButton>
-                                    )}
-                                    {isLogined && (
-                                        <IconButton sx={commonButtonStyle} onClick={onHandleNotification}>
-                                            <Badge badgeContent={notification.count} color="error">
-                                                <NotificationsIcon sx={{ color: 'text.secondary' }} />
-                                            </Badge>
-                                        </IconButton>
-                                    )}
-                                </Box>
-                                {isLogined && <AccountPopover />}
-                            </Stack>
-                        </Stack>
+                                    <Box
+                                        component="img"
+                                        src={tab.icon}
+                                        sx={{
+                                            width: 20,
+                                            height: 20,
+                                            filter: isActive ? 'none' : 'grayscale(100%) opacity(0.7)'
+                                        }}
+                                    />
+                                    <Typography
+                                        className="label"
+                                        variant="subtitle2"
+                                        sx={{
+                                            fontWeight: 600,
+                                            color: isActive ? 'primary.main' : 'text.secondary',
+                                            transition: 'color 0.2s'
+                                        }}
+                                    >
+                                        {t(tab.label)}
+                                    </Typography>
+                                </Stack>
+                            );
+                        })}
                     </Stack>
+                </Stack>
+
+                {/* Right Section: Actions */}
+                <Stack direction="row" alignItems="center" spacing={{ xs: 1, sm: 2 }}>
+                    {/* Search Button (Desktop) */}
+                    <IconButton
+                        onClick={() => onToggleModal('EXPLORE')}
+                        sx={{
+                            display: { xs: 'none', sm: 'inline-flex' },
+                            color: 'text.secondary',
+                            bgcolor: 'background.layer3',
+                            borderRadius: '50%',
+                            p: 1.2,
+                            '&:hover': { bgcolor: 'background.layer4', color: 'text.primary' }
+                        }}
+                    >
+                        <SearchIcon sx={{ fontSize: 20 }} />
+                    </IconButton>
+
+                    {/* Not Logged In Actions */}
+                    {!isLogined && (
+                        <>
+                            <Button
+                                onClick={() => onToggleModal('SIGNIN')}
+                                sx={{
+                                    color: 'text.primary',
+                                    fontWeight: 600,
+                                    textTransform: 'none',
+                                    display: { xs: 'none', sm: 'flex' },
+                                    '&:hover': { color: 'primary.main', bgcolor: 'transparent' }
+                                }}
+                            >
+                                {t('Sign in')}
+                            </Button>
+                            <ColorButton
+                                onClick={() => onToggleModal('SIGNUP')}
+                                sx={{
+                                    px: { xs: 2, sm: 3 },
+                                    height: { xs: '2.25rem', sm: '2.5rem' },
+                                    fontSize: { xs: '0.8125rem', sm: '0.875rem' },
+                                    textTransform: 'none'
+                                }}
+                            >
+                                {t('Sign up')}
+                            </ColorButton>
+                        </>
+                    )}
+
+                    {/* Logged In Actions */}
+                    {isLogined && (
+                        <>
+                            {/* Balance Component */}
+                            <Stack
+                                direction="row"
+                                alignItems="center"
+                                spacing={1}
+                                onClick={anchorBalanceOpen}
+                                ref={anchorBalanceEl2}
+                                sx={{
+                                    cursor: 'pointer',
+                                    bgcolor: 'background.layer3',
+                                    borderRadius: 2,
+                                    px: 1.5,
+                                    py: 0.8,
+                                    border: '1px solid',
+                                    borderColor: 'background.border',
+                                    display: { xs: 'none', sm: 'flex' }
+                                }}
+                            >
+                                <Box component="img" src={balance.icon} sx={{ width: 20, height: 20 }} />
+                                <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>
+                                    {balance.amount.toFixed(2)}
+                                </Typography>
+                                <ArrowDropDownIcon sx={{ fontSize: 18, color: 'text.secondary' }} />
+                            </Stack>
+
+                            {/* Balance Popover */}
+                            {anchorBalanceEl2.current && (
+                                <Popover
+                                    open={showBalance}
+                                    anchorEl={anchorBalanceEl2.current}
+                                    onClose={handleBalanceClose}
+                                    anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                                    transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+                                    PaperProps={{
+                                        sx: {
+                                            mt: 1,
+                                            width: 260,
+                                            p: 2,
+                                            bgcolor: 'background.layer2',
+                                            backgroundImage: 'none',
+                                            boxShadow: 24
+                                        }
+                                    }}
+                                >
+                                    <Stack spacing={1.5}>
+                                        <Stack direction="row" justifyContent="space-between">
+                                            <Typography variant="body2" color="text.secondary">
+                                                Main
+                                            </Typography>
+                                            <Typography variant="subtitle2">{`${fBalance(balance.amount)} ${user?.currency}`}</Typography>
+                                        </Stack>
+                                        <Stack direction="row" justifyContent="space-between">
+                                            <Typography variant="body2" color="text.secondary">
+                                                Bonus
+                                            </Typography>
+                                            <Typography variant="subtitle2">{`${fBalance(balance.bonus)} ${user?.currency}`}</Typography>
+                                        </Stack>
+                                        <Stack direction="row" justifyContent="space-between">
+                                            <Typography variant="body2" color="text.secondary">
+                                                Withdrawable
+                                            </Typography>
+                                            <Typography variant="subtitle2">{`${fBalance(balance.withdrawable)} ${user?.currency}`}</Typography>
+                                        </Stack>
+                                    </Stack>
+                                </Popover>
+                            )}
+
+                            {/* Deposit Button */}
+                            <Button
+                                onClick={() => onToggleModal('DEPOSIT')}
+                                startIcon={<Add />}
+                                sx={{
+                                    bgcolor: 'primary.main',
+                                    color: '#fff',
+                                    backgroundImage: 'linear-gradient(90deg, #00BAE6 0%, #58D6FF 100%)',
+                                    boxShadow: '0px 4px 10px rgba(0, 186, 230, 0.4)',
+                                    borderRadius: 2,
+                                    px: { xs: 1.5, sm: 2.5 },
+                                    fontSize: { xs: '0.8125rem', sm: '0.875rem' },
+                                    height: { xs: 32, sm: 40 },
+                                    textTransform: 'none',
+                                    fontWeight: 700,
+                                    '&:hover': {
+                                        backgroundImage: 'linear-gradient(90deg, #006C9C 0%, #00BAE6 100%)'
+                                    }
+                                }}
+                            >
+                                {t('Deposit')}
+                            </Button>
+
+                            {/* Notification */}
+                            <IconButton
+                                onClick={onHandleNotification}
+                                sx={{
+                                    display: { xs: 'none', md: 'inline-flex' },
+                                    color: 'text.secondary',
+                                    bgcolor: 'background.layer3',
+                                    borderRadius: 2,
+                                    p: 1,
+                                    '&:hover': { bgcolor: 'background.layer4', color: 'text.primary' }
+                                }}
+                            >
+                                <Badge badgeContent={notification.count} color="error" variant="dot">
+                                    <NotificationsIcon sx={{ fontSize: 22 }} />
+                                </Badge>
+                            </IconButton>
+
+                            {/* Profile Dropdown */}
+                            <AccountPopover />
+                        </>
+                    )}
+
+                    {/* Language Switcher */}
+                    <IconButton
+                        onClick={() => onToggleModal('LANGUAGE')}
+                        sx={{
+                            display: { xs: 'none', md: 'inline-flex' },
+                            color: 'text.secondary',
+                            bgcolor: 'background.layer3',
+                            borderRadius: 2,
+                            p: 1,
+                            '&:hover': { bgcolor: 'background.layer4', color: 'text.primary' }
+                        }}
+                    >
+                        <WorldIcon sx={{ fontSize: 22 }} />
+                    </IconButton>
                 </Stack>
             </Stack>
         </Stack>

@@ -143,7 +143,7 @@ const VipFaq = () => {
                                     }}
                                 >
                                     Having more than one account per user is prohibited. You will get the lower
-                                    possibility of receiving rain and Shivaspins will suspend your withdrawals for a
+                                    possibility of receiving rain and 87 Casino will suspend your withdrawals for a
                                     manual review in the fraud prevention system which may take up to 24 hrs. We do not
                                     guarantee withdraw processing and may ban account with your balance in it. If you
                                     have already had more than one account please self-surrender by contacting Live
@@ -413,15 +413,15 @@ const VipFaq = () => {
                                 }}
                             >
                                 In addition to our existing Weekly Bonus for VIP level 22+ players, we are now
-                                introducing the Shivaspins Sports Club weekly bonus as an additional perk for sports
+                                introducing the 87 Casino Sports Club weekly bonus as an additional perk for sports
                                 bettors. The new Sport bonus is specific only to Sport Wager and is calculated based on
                                 the player's wagering amount from Saturday to Friday, and distributed automatically
-                                every Saturday. With the introduction of the Shivaspins Sports Club bonuses, our VIP level
+                                every Saturday. With the introduction of the 87 Casino Sports Club bonuses, our VIP level
                                 22+ players can now enjoy even more rewards and a thrilling sports betting experience!
                             </Typography>
 
                             <Typography sx={{ fontSize: { xs: 14, sm: 16 }, fontWeight: 600, color: 'text.secondary' }}>
-                                Shivaspins Sports Club offers a range of weekend bonuses based on your weekly wager amount
+                                87 Casino Sports Club offers a range of weekend bonuses based on your weekly wager amount
                                 in our Sportsbook.
                             </Typography>
 

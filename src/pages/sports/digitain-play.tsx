@@ -12,7 +12,6 @@ import { LoadingScreen } from 'components/loading-screen';
 import { useSettingsContext } from 'components/settings';
 // api
 import { gameLaunch } from 'api';
-import { APP_URL } from 'config';
 // routes
 import { useParams } from 'routes/hook';
 
@@ -35,7 +34,7 @@ const DigitainPlay = () => {
     const [launchUrl, setLaunchUrl] = useState('');
     const [useAsianView, setUseAsianView] = useState(true);
     const [token, setToken] = useState<string | null>(null);
-    const agentFrontUrl = APP_URL;
+    const agentFrontUrl = window.location.origin;
     const [scriptLoaded, setScriptLoaded] = useState(false);
 
     const getGameLaunchUrl = async () => {

@@ -37,7 +37,7 @@ const LiveBadge = styled(Box)(({ theme }) => ({
     position: 'absolute',
     display: 'flex',
     alignItems: 'center',
-    borderRadius: Number(theme.shape.borderRadius),
+    borderRadius: theme.shape.borderRadius,
     padding: '0 6px',
     right: theme.spacing(1),
     top: theme.spacing(1),

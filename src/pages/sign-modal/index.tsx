@@ -36,7 +36,7 @@ const SignModal = () => {
         overflow: 'hidden',
         width: '100%',
         height: isMobile ? '100%' : 'auto',
-        borderRadius: isMobile ? 0 : Number(theme.shape.borderRadius) * 3,
+        borderRadius: isMobile ? 0 : (theme.shape.borderRadius as number) * 3,
         maxWidth: isMobile ? 'auto' : '800px',
         position: 'relative',
         '&:focus': { outline: 'none' }

@@ -16,7 +16,7 @@ export const paper = ({ theme, bgcolor, dropdown }: { theme: Theme; bgcolor?: st
     ...(dropdown && {
         padding: theme.spacing(0.5),
         boxShadow: theme.customShadows.dropdown,
-        borderRadius: Number(theme.shape.borderRadius) * 1.25
+        borderRadius: (theme.shape.borderRadius as number) * 1.25
     })
 });
 
@@ -25,7 +25,7 @@ export const paper = ({ theme, bgcolor, dropdown }: { theme: Theme; bgcolor?: st
 export const menuItem = (theme: Theme) => ({
     ...theme.typography.body2,
     padding: theme.spacing(0.75, 1),
-    borderRadius: Number(theme.shape.borderRadius) * 0.75,
+    borderRadius: (theme.shape.borderRadius as number) * 0.75,
     '&:not(:last-of-type)': {
         marginBottom: 4
     },

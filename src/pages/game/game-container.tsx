@@ -33,7 +33,7 @@ const GameFrame = styled(Box)(({ theme }) => ({
     position: 'relative',
     zIndex: 10,
     backgroundColor: theme.palette.background.layer2,
-    borderRadius: Number(theme.shape.borderRadius),
+    borderRadius: theme.shape.borderRadius,
     overflow: 'hidden',
     transition: 'all 0.3s'
 }));
@@ -50,7 +50,7 @@ const GameOverlay = styled(Box)({
 });
 
 const GameControls = styled(Box)(({ theme }) => ({
-    borderRadius: Number(theme.shape.borderRadius),
+    borderRadius: theme.shape.borderRadius,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',

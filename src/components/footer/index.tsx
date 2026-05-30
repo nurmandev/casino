@@ -1,373 +1,347 @@
 import { useTranslate } from 'locales';
 // @mui
-import { Box, Container, Link, Stack, Typography, styled, IconButton } from '@mui/material';
+import { Box, Container, Grid, Link, Stack, Typography, styled, useTheme } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
-import Iconify from 'components/iconify';
+// iconify
+import { Icon } from '@iconify/react';
 
 interface FooterSection {
     title: string;
-    links: { label: string; href?: string; highlight?: boolean }[];
+    links: { label: string; href?: string }[];
 }
 
 const footerSections: FooterSection[] = [
     {
-        title: 'Casino',
+        title: 'Sports',
         links: [
-            { label: 'Casino Home' },
-            { label: 'Slots' },
-            { label: 'Live Casino' },
-            { label: 'New Releases' },
-            { label: 'Recommended', highlight: true },
-            { label: 'Table Game' },
-            { label: 'BlackJack' },
-            { label: 'Roulette' },
-            { label: 'Baccarat' }
+            { label: 'Sports Home', href: '/sports' },
+            { label: 'Live', href: '/sports' },
+            { label: 'SportsBook', href: '/sports' },
+            { label: 'Rules', href: '/sports' }
         ]
     },
     {
-        title: 'Sports',
-        links: [{ label: 'Sports Home' }, { label: 'Live' }, { label: 'Rules' }]
-    },
-    {
-        title: 'Support',
-        links: [{ label: 'Help Center' }, { label: 'Live Support' }, { label: 'Refer a friend' }]
+        title: 'Promo',
+        links: [
+            { label: 'VIP Club', href: '/vip' },
+            { label: 'Referral', href: '/affiliate/dashboard' }
+        ]
     },
     {
         title: 'Support/Legal',
         links: [
-            { label: 'Fairness' },
-            { label: 'FAQ' },
-            { label: 'Privacy Policy' },
-            { label: 'Terms Of Service' },
-            { label: 'Responsible Gambling' },
-            { label: 'AML' },
-            { label: 'Self-Exclusion' }
+            { label: 'Licenses', href: '/help-center' },
+            { label: 'Privacy Policy', href: '/help-center' },
+            { label: 'Terms Of Service', href: '/help-center' },
+            { label: 'Responsible Gambling', href: '/help-center' },
+            { label: 'Live Support', href: '/help-center' }
         ]
     }
 ];
 
-const CERTIFICATIONS = [
-    '/assets/images/certification/18.png',
-    '/assets/images/certification/crypto-gambling.png',
-    '/assets/images/certification/itech.png',
-    '/assets/images/certification/gcb.png',
-    '/assets/images/certification/pci.png'
+const PARTNER_LOGOS_DARK = [
+    '/assets/images/brand-logo/d-92-DCx7K2V3.webp',
+    '/assets/images/brand-logo/d-93-0pkDEp9Z.webp',
+    '/assets/images/brand-logo/d-94-BjjhhHHh.webp',
+    '/assets/images/brand-logo/d-95-CMQSGT4N.png',
+    '/assets/images/brand-logo/d-96-pZM7QuMr.webp',
+    '/assets/images/brand-logo/d-97-qal8av7f.webp',
+    '/assets/images/brand-logo/d-98-DA42CT6W.webp',
+    '/assets/images/brand-logo/d-99-NFJF9gM_.webp'
 ];
 
-const SOCIAL_NETWORKS = [
-    { icon: 'ic:baseline-telegram', path: '#' },
-    { icon: 'mdi:github', path: '#' },
-    { icon: 'ri:twitter-x-fill', path: '#' },
-    { icon: 'ic:baseline-facebook', path: '#' },
-    { icon: 'ic:baseline-discord', path: '#' },
-    { icon: 'ic:baseline-whatsapp', path: '#' },
-    { icon: 'mdi:instagram', path: '#' },
-    { icon: 'ph:globe', path: '#' }
+const PARTNER_LOGOS_LIGHT = [
+    '/assets/images/brand-logo/l-92-D9CXX7n9.webp',
+    '/assets/images/brand-logo/l-93-DgRQ3Lqa.webp',
+    '/assets/images/brand-logo/l-94-CFwrRsGr.webp',
+    '/assets/images/brand-logo/l-95-DCnS_xIT.webp',
+    '/assets/images/brand-logo/l-96-C1nvtIUl.webp',
+    '/assets/images/brand-logo/l-97-CpWNpbFQ.webp',
+    '/assets/images/brand-logo/l-98-DtiOQmq7.webp',
+    '/assets/images/brand-logo/l-99-Do9OFKQ2.webp'
 ];
+
+const CERTIFICATION_SPRITES = [
+    '/img/footer/sprite.png',
+    '/img/footer/sprite_1.png',
+    '/img/footer/sprite_2.png',
+    '/img/footer/sprite_3.png',
+    '/img/footer/sprite_4.png'
+];
+
+const SocialCircle = styled(Link)(({ theme }) => ({
+    width: 38,
+    height: 38,
+    borderRadius: '50%',
+    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: 'rgba(255, 255, 255, 0.6)',
+    transition: 'all 0.2s',
+    cursor: 'pointer',
+    '&:hover': {
+        backgroundColor: '#22E9A7',
+        color: '#000',
+        transform: 'translateY(-2px)',
+        boxShadow: '0 4px 12px rgba(34, 233, 167, 0.3)'
+    }
+}));
 
 const Footer = () => {
     const { t } = useTranslate();
+    const theme = useTheme();
+    const isDarkMode = theme.palette.mode === 'dark';
+    const logos = isDarkMode ? PARTNER_LOGOS_DARK : PARTNER_LOGOS_LIGHT;
+
+    const globalSocials = [
+        { icon: 'mdi:telegram', url: 'https://telegram.org' },
+        { icon: 'mdi:github', url: 'https://github.com' },
+        { icon: 'ri:twitter-x-fill', url: 'https://twitter.com' },
+        { icon: 'mdi:facebook', url: 'https://facebook.com' },
+        { icon: 'mdi:discord', url: 'https://discord.com' },
+        { icon: 'mdi:whatsapp', url: 'https://whatsapp.com' },
+        { icon: 'mdi:instagram', url: 'https://instagram.com' },
+        { icon: 'ri:forum-fill', url: '#' }
+    ];
+
     return (
         <Box
+            component="footer"
             sx={{
                 width: '100%',
-                bgcolor: 'background.footer',
-                color: '#fff'
+                bgcolor: 'background.site', // Perfectly match the page background color!
+                color: 'text.secondary',
+                borderTop: '1px solid',
+                borderColor: 'rgba(255, 255, 255, 0.05)',
+                pt: 8,
+                pb: 4
             }}
         >
             <Container maxWidth={false} sx={{ maxWidth: '1248px !important' }}>
-                {/* 1. Top Information Section */}
-                <Box
-                    sx={{
-                        display: 'flex',
-                        flexWrap: 'wrap',
-                        py: { xs: 4, md: 6 },
-                        borderBottom: '1px solid',
-                        borderColor: '#FFFFFF1A',
-                        mx: -2 // Negative margin for gutter
-                    }}
-                >
-                    <Box sx={{ width: { xs: '100%', md: '58.333%' }, px: 2 }}>
-                        <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 2 }}>
-                            Crypto Online Casino
-                        </Typography>
-                        <Typography variant="body2" sx={{ color: 'text.secondary', mb: 2, lineHeight: 1.6 }}>
-                            Explore 1000+ slots, live dealer tables, crash and original games, plus full sports betting
-                            with pre-match and in-play odds. Instant deposits, low fees, fast withdrawals.
-                        </Typography>
-                        <Typography variant="body2" sx={{ color: 'text.secondary', lineHeight: 1.6 }}>
-                            Our provably fair systems and audited RNG protect every bet. One wallet across casino and
-                            sportsbook keeps things simple, and our mobile-ready site lets you play anywhere. New
-                            players can claim welcome bonuses and ongoing cashback. Need help? 24/7 support has you
-                            covered. Simple, secure, and built for real-money crypto gaming.
-                        </Typography>
-                    </Box>
-                    <Box sx={{ width: { xs: '100%', md: '41.666%' }, px: 2 }}>
-                        <Stack
-                            spacing={1}
-                            sx={{ mt: { xs: 2, md: 0 }, alignItems: { xs: 'flex-start', md: 'flex-start' } }}
-                        >
-                            <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                                Help us improve your experience
-                            </Typography>
-                            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                                Get rewarded for your valuable feedback!
-                            </Typography>
-                            <Typography variant="body2" sx={{ color: '#22E9A7', fontWeight: 'bold', mt: 1 }}>
-                                Email us: feedback@87.com
-                            </Typography>
-                        </Stack>
-                    </Box>
-                </Box>
-
-                {/* 2. Awards Section */}
-                <Box sx={{ py: { xs: 3, md: 4 }, borderBottom: '1px solid', borderColor: '#FFFFFF1A' }}>
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            flexWrap: 'wrap',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            mx: -1
-                        }}
-                    >
-                        {[
-                            'achieve_1-c87ad7ad.webp',
-                            'achieve_2-f40a41f6.webp',
-                            'achieve_3-bf42dfa3.webp',
-                            'achieve_4-c845bc7e.webp',
-                            'achieve_5-7e08d516.webp',
-                            'achieve_6-f98836e4.webp',
-                            'achieve_7-6bbaf20d.webp',
-                            'achieve_8-65991297.webp'
-                        ].map((img, index) => (
-                            <Box
-                                key={index}
-                                sx={{
-                                    width: { xs: '33.33%', sm: '25%', md: '12.5%' },
-                                    px: 1,
-                                    mb: 2,
-                                    display: 'flex',
-                                    justifyContent: 'center'
-                                }}
-                            >
+                {/* 1. Partner Awards & Brand Logos Row (Using User's brand-logo webp assets dynamically based on dark/light mode!) */}
+                <Box sx={{ mb: 6 }}>
+                    <Grid container spacing={2} justifyContent="space-between" alignItems="center">
+                        {logos.map((logoUrl, index) => (
+                            <Grid key={index} size={{ xs: 3, sm: 3, md: 1.4 }}>
                                 <Box
-                                    component={'img'}
-                                    src={`/assets/images/medals/${img}`}
-                                    alt={'award'}
+                                    component="img"
+                                    src={logoUrl}
+                                    alt={`award-partner-${index}`}
                                     sx={{
                                         width: '100%',
-                                        maxWidth: { xs: 60, sm: 80, md: 80 },
-                                        height: 'auto',
-                                        maxHeight: 60,
+                                        maxHeight: { xs: 32, sm: 40, md: 48 },
                                         objectFit: 'contain',
-                                        opacity: 0.5,
-                                        filter: 'grayscale(100%)',
-                                        transition: 'all 0.3s',
-                                        '&:hover': { opacity: 1, filter: 'none' }
+                                        opacity: 0.7,
+                                        transition: 'all 0.2s',
+                                        '&:hover': {
+                                            opacity: 1,
+                                            transform: 'scale(1.05)'
+                                        }
                                     }}
                                 />
-                            </Box>
+                            </Grid>
                         ))}
-                    </Box>
+                    </Grid>
                 </Box>
 
-                {/* 3. Partners / Certifications Section */}
-                <Stack
-                    direction={{ xs: 'column', md: 'row' }}
-                    justifyContent="space-between"
-                    alignItems={{ xs: 'center', md: 'center' }}
-                    gap={3}
-                    flexWrap="wrap"
-                    sx={{ py: { xs: 3, md: 4 }, borderBottom: '1px solid', borderColor: '#FFFFFF1A' }}
-                >
-                    <Stack
-                        direction="row"
-                        gap={{ xs: 2, md: 3 }}
-                        flexWrap="wrap"
-                        justifyContent={{ xs: 'center', md: 'flex-start' }}
-                        alignItems="center"
-                    >
-                        <Typography variant="h6" sx={{ fontWeight: 'bold', color: '#fff', letterSpacing: 1 }}>
-                            SIGMA
-                        </Typography>
-                        <Typography
-                            variant="body2"
-                            sx={{ color: 'text.secondary', textAlign: 'center', lineHeight: 1.2 }}
-                        >
-                            Responsible
-                            <br />
-                            Gambling
-                        </Typography>
-                        <Stack direction="row" alignItems="center" gap={0.5}>
-                            <Box
-                                component="div"
+                {/* 2. Top Link & Community Grid */}
+                <Grid container spacing={4} sx={{ mb: 6 }}>
+                    {/* Render Columns dynamically */}
+                    {footerSections.map((section) => (
+                        <Grid key={section.title} size={{ xs: 6, sm: 4, md: 2.5 }}>
+                            <Typography
+                                variant="subtitle2"
                                 sx={{
-                                    width: 24,
-                                    height: 24,
-                                    border: '2px solid white',
-                                    borderRadius: '50%',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    fontWeight: 'bold'
+                                    color: 'common.white',
+                                    fontWeight: 700,
+                                    fontSize: '1rem',
+                                    mb: 2.5
                                 }}
                             >
-                                G
-                            </Box>
-                            <Typography variant="h6" sx={{ fontWeight: 'bold', color: 'text.secondary' }}>
-                                GamCare
-                            </Typography>
-                        </Stack>
-                        <Typography variant="h6" sx={{ fontWeight: 'bold', color: 'text.secondary' }}>
-                            betblocker
-                        </Typography>
-                        <Box
-                            component="div"
-                            sx={{
-                                border: '1px solid white',
-                                borderRadius: '50%',
-                                p: 0.5,
-                                width: 32,
-                                height: 32,
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center'
-                            }}
-                        >
-                            <Typography variant="body2" sx={{ fontWeight: 'bold' }}>
-                                18+
-                            </Typography>
-                        </Box>
-                    </Stack>
-
-                    {/* Club/Team Logos */}
-                    <Stack
-                        direction="row"
-                        gap={3}
-                        flexWrap="wrap"
-                        justifyContent={{ xs: 'center', md: 'flex-end' }}
-                        alignItems="center"
-                    >
-                        {[
-                            '21825.png',
-                            '2344890497778196512.png',
-                            '2344949089407475734.png',
-                            '2508.png',
-                            '2513.png',
-                            '402227.png'
-                        ].map((img, i) => (
-                            <Box
-                                key={i}
-                                component="img"
-                                src={`/assets/images/clubs/${img}`}
-                                sx={{
-                                    height: { xs: 30, md: 40 },
-                                    opacity: 0.6,
-                                    filter: 'grayscale(100%)',
-                                    '&:hover': { opacity: 1, filter: 'none' }
-                                }}
-                            />
-                        ))}
-                    </Stack>
-                </Stack>
-
-                {/* 4. Links & Socials Section */}
-                <Box
-                    sx={{
-                        display: 'flex',
-                        flexWrap: 'wrap',
-                        py: { xs: 4, md: 6 },
-                        mx: -2
-                    }}
-                >
-                    {footerSections.map((section) => (
-                        <Box
-                            key={section.title}
-                            sx={{
-                                width: { xs: '50%', sm: '50%', md: '16.666%' },
-                                px: 2,
-                                mb: 4
-                            }}
-                        >
-                            <Typography variant="subtitle2" sx={{ color: '#fff', fontWeight: 'bold', mb: 2.5 }}>
-                                {section.title}
+                                {t(section.title)}
                             </Typography>
                             <Stack spacing={1.5}>
-                                {section.links.map((link, index) => {
-                                    const routeMap: Record<string, string> = {
-                                        'Casino Home': '/casino',
-                                        Slots: '/casino/slot?type=Slots',
-                                        'Live Casino': '/casino/live?type=Live Casino',
-                                        'New Releases': '/gamelist/slot?type=New Releases',
-                                        Recommended: '/gamelist/recommended-games',
-                                        'Table Game': '/casino/OTHER?type=Table Game',
-                                        BlackJack: '/casino/slot?type=BlackJack',
-                                        Roulette: '/casino/slot?type=Roulette',
-                                        Baccarat: '/casino/slot?type=Baccarat',
-                                        'Sports Home': '/sports',
-                                        Live: '/sports',
-                                        Rules: '/sports',
-                                        'Help Center': '/help-center',
-                                        'Live Support': '/help-center',
-                                        'Refer a friend': '/affiliate/dashboard',
-                                        Fairness: '/help-center',
-                                        FAQ: '/help-center',
-                                        'Privacy Policy': '/help-center',
-                                        'Terms Of Service': '/help-center',
-                                        'Responsible Gambling': '/help-center',
-                                        AML: '/help-center',
-                                        'Self-Exclusion': '/help-center'
-                                    };
-                                    const to = link.href || routeMap[link.label] || '#';
-                                    const isInternal = to.startsWith('/');
-
-                                    return (
-                                        <Link
-                                            key={index}
-                                            component={isInternal ? RouterLink : 'a'}
-                                            {...(isInternal ? { to } : { href: to })}
-                                            underline="none"
-                                            sx={{
-                                                color: link.highlight ? '#fff' : 'text.secondary',
-                                                fontSize: '0.875rem',
-                                                '&:hover': { color: '#22E9A7' }
-                                            }}
-                                        >
-                                            {link.label}
-                                        </Link>
-                                    );
-                                })}
+                                {section.links.map((link, idx) => (
+                                    <Link
+                                        key={idx}
+                                        component={RouterLink}
+                                        to={link.href || '#'}
+                                        underline="none"
+                                        sx={{
+                                            color: 'rgba(255, 255, 255, 0.6)',
+                                            fontSize: '0.875rem',
+                                            fontWeight: 500,
+                                            transition: 'color 0.2s',
+                                            '&:hover': {
+                                                color: 'primary.main'
+                                            }
+                                        }}
+                                    >
+                                        {t(link.label)}
+                                    </Link>
+                                ))}
                             </Stack>
-                        </Box>
+                        </Grid>
                     ))}
 
-                    {/* Join Global Community */}
-                    <Box sx={{ width: { xs: '100%', md: '33.333%' }, px: 2 }}>
-                        <Stack alignItems={{ xs: 'flex-start', md: 'flex-end' }}>
-                            <Typography variant="subtitle2" sx={{ color: '#fff', fontWeight: 'bold', mb: 2.5 }}>
-                                Join Our Global Community
+                    {/* Join Our Community Column */}
+                    <Grid size={{ xs: 12, sm: 12, md: 4.5 }}>
+                        {/* Global Community */}
+                        <Typography
+                            variant="subtitle2"
+                            sx={{
+                                color: 'common.white',
+                                fontWeight: 700,
+                                fontSize: '1rem',
+                                mb: 2.5
+                            }}
+                        >
+                            {t('Join Our Global Community')}
+                        </Typography>
+                        <Grid container spacing={1.5} sx={{ mb: 4, maxWidth: 220 }}>
+                            {globalSocials.map((social, idx) => (
+                                <Grid key={idx} size={3}>
+                                    <SocialCircle href={social.url} target="_blank" rel="noopener noreferrer">
+                                        <Icon icon={social.icon} width="20" height="20" />
+                                    </SocialCircle>
+                                </Grid>
+                            ))}
+                        </Grid>
+
+                        {/* Local Community */}
+                        <Typography
+                            variant="subtitle2"
+                            sx={{
+                                color: 'common.white',
+                                fontWeight: 700,
+                                fontSize: '1rem',
+                                mb: 2
+                            }}
+                        >
+                            {t('Join Our Local Community')}
+                        </Typography>
+                        <SocialCircle href="#" sx={{ width: 38, height: 38 }}>
+                            <Icon icon="mdi:chat-processing" width="20" height="20" />
+                        </SocialCircle>
+                    </Grid>
+                </Grid>
+
+                {/* Divider Line */}
+                <Box
+                    sx={{
+                        width: '100%',
+                        height: '1px',
+                        bgcolor: 'rgba(255, 255, 255, 0.05)',
+                        my: 5
+                    }}
+                />
+
+                {/* Bottom Row: Logo, Disclaimer, and Verification Text */}
+                <Grid container spacing={4} sx={{ mb: 6 }}>
+                    {/* Left Column: Brand Logo and Basic Signoff */}
+                    <Grid size={{ xs: 12, md: 6 }}>
+                        <Stack spacing={3} alignItems="flex-start">
+                            <Stack direction="row" spacing={2} alignItems="center">
+                                <Box component="img" src="/logo.webp" sx={{ height: 32 }} />
+                                {/* Football verification shield */}
+                                <Box
+                                    sx={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        p: 0.5,
+                                        borderRadius: '4px',
+                                        bgcolor: 'rgba(255,255,255,0.05)',
+                                        border: '1px solid rgba(255,255,255,0.1)'
+                                    }}
+                                >
+                                    <Icon icon="mdi:shield-check" color="#22E9A7" width="24" height="24" />
+                                </Box>
+                            </Stack>
+                            <Typography
+                                sx={{
+                                    fontSize: '0.75rem',
+                                    lineHeight: 1.6,
+                                    color: 'rgba(255, 255, 255, 0.4)',
+                                    maxWidth: '460px'
+                                }}
+                            >
+                                Your use of and access to this website signifies that you fully understand and agree to be legally bound by the contents of our Terms of Service and Responsible Gaming Policy.
                             </Typography>
-                            <Box sx={{ display: 'flex', flexWrap: 'wrap', maxWidth: 220, mx: -0.5 }}>
-                                {SOCIAL_NETWORKS.map((social, index) => (
-                                    <Box key={index} sx={{ width: '25%', px: 0.5, mb: 1 }}>
-                                        <IconButton
-                                            sx={{
-                                                bgcolor: '#FFFFFF0D',
-                                                borderRadius: 1,
-                                                width: 40,
-                                                height: 40,
-                                                '&:hover': { bgcolor: '#FFFFFF26' }
-                                            }}
-                                        >
-                                            <Iconify icon={social.icon} width={20} color="#9aa0a6" />
-                                        </IconButton>
-                                    </Box>
-                                ))}
-                            </Box>
                         </Stack>
-                    </Box>
-                </Box>
+                    </Grid>
+
+                    {/* Right Column: Licensing Text & Verification Badge Row (Using User's public/img/footer sprite webp assets!) */}
+                    <Grid size={{ xs: 12, md: 6 }}>
+                        <Grid container spacing={2}>
+                            <Grid size={{ xs: 1.5, sm: 1 }}>
+                                <Box
+                                    sx={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        width: 36,
+                                        height: 36,
+                                        borderRadius: '50%',
+                                        bgcolor: 'rgba(255, 255, 255, 0.05)',
+                                        border: '1px solid rgba(255, 255, 255, 0.1)'
+                                    }}
+                                >
+                                    <Icon icon="mdi:alert-circle-outline" color="#ff4444" width="22" height="22" />
+                                </Box>
+                            </Grid>
+                            <Grid size={{ xs: 10, sm: 11 }}>
+                                <Stack spacing={2}>
+                                    <Typography
+                                        sx={{
+                                            fontSize: '0.75rem',
+                                            lineHeight: 1.6,
+                                            color: 'rgba(255, 255, 255, 0.4)'
+                                        }}
+                                    >
+                                        BCBET.NG is owned and managed by BlockDance Africa Limited, licensed and authorized by the Government of Nigeria's National Lottery Regulatory Commission to operate under a National Sports Betting Permit no. #2005793 and the Lagos State Lotteries and Gaming Authority to operate as a gaming operator in Lagos State under category Sport Betting / Online Casino with license no. LSLGA/OP/OSB/210325.
+                                    </Typography>
+                                    
+                                    {/* Certification Icons from user's /img/footer assets */}
+                                    <Stack direction="row" spacing={1.5} flexWrap="wrap" alignItems="center" sx={{ pt: 1, gap: 1.5 }}>
+                                        {CERTIFICATION_SPRITES.map((spritePath, idx) => (
+                                            <Box
+                                                key={idx}
+                                                component="img"
+                                                src={spritePath}
+                                                alt={`certification-badge-${idx}`}
+                                                sx={{
+                                                    height: 32,
+                                                    objectFit: 'contain',
+                                                    opacity: 0.5,
+                                                    transition: 'opacity 0.2s',
+                                                    '&:hover': {
+                                                        opacity: 0.9
+                                                    }
+                                                }}
+                                            />
+                                        ))}
+                                    </Stack>
+                                </Stack>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+                {/* Copyright Line */}
+                <Typography
+                    sx={{
+                        fontSize: '0.75rem',
+                        color: 'rgba(255, 255, 255, 0.3)',
+                        textAlign: 'center',
+                        borderTop: '1px solid',
+                        borderColor: 'rgba(255, 255, 255, 0.03)',
+                        pt: 3
+                    }}
+                >
+                    Copyright ©2026 BlockDance Africa Limited ALL RIGHTS RESERVED.
+                </Typography>
             </Container>
         </Box>
     );

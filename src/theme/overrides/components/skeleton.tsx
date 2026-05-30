@@ -14,7 +14,7 @@ export default function Skeleton(theme: Theme) {
                     backgroundColor: theme.palette.background.default
                 },
                 rounded: {
-                    borderRadius: Number(theme.shape.borderRadius) * 2
+                    borderRadius: (theme.shape.borderRadius as number) * 2
                 }
             }
         }

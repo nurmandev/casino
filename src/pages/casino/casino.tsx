@@ -6,7 +6,7 @@ import { MultiSelect } from 'components/multi-select';
 import Pagination from 'components/pagination';
 import { SortSelect } from 'components/sort-select';
 import { providerType } from 'types/game';
-import { getGamesBySearch, getSlotGames, getSlotProviders } from 'api';
+import { getProviderGameList, getProviderList, getSlotGames, getSlotProviders } from 'api';
 import { ASSETS } from 'utils/axios';
 
 const sortList = ['Popular', 'A-Z', 'Z-A', 'New'];
@@ -26,10 +26,8 @@ const Casino = ({ gameType }: { gameType: string }) => {
 
     const getProviders = async () => {
         try {
-            const response = await getSlotProviders(gameType === 'OTHER' ? '' : gameType || '');
-            if (Array.isArray(response)) {
-                setProviderList(response);
-            }
+            const response = await getSlotProviders(gameType === 'OTHER' ? '' : gameType);
+            setProviderList(response);
         } catch (error) {
             console.log(error);
         }
@@ -38,34 +36,21 @@ const Casino = ({ gameType }: { gameType: string }) => {
     const getGameList = async () => {
         try {
             setLoading(true);
+            if (provider) {
+                const processed = provider.length === 1 && provider[0] === 'All' ? undefined : provider;
 
-            let type = '';
-            // Map frontend routes to GSC game types
-            if (gameType === 'live') type = 'LIVE_CASINO';
-            else if (gameType === 'fish') type = 'FISHING';
-            else if (gameType === 'poker') type = 'POKER';
-            else if (gameType === 'OTHER')
-                type = 'OTHERS'; // Check static.ts for correct type
-            else type = gameType || ''; // Fallback
+                const response = await getSlotGames({
+                    categories: gameType === 'OTHER' ? '' : gameType,
+                    currentPage: currentPage,
+                    perPage: 40,
+                    provider: processed
+                });
 
-            // Use getGamesBySearch (GSC)
-            // Note: getGamesBySearch(name, gameType, currentPage, perPage)
-            // It currently does not support filtering by 'provider' array like getSlotGames did.
-            // If filtering by provider is needed, the backend API for search needs update or use getProviderGameList logic.
-            // For now, we prioritize showing games.
-
-            const response = await getGamesBySearch('', type, currentPage, 40);
-
-            if (response && response.data) {
                 setGames(response.data);
                 setTotalPages(Math.ceil(response.count / 40));
-            } else {
-                setGames([]);
-                setTotalPages(1);
             }
         } catch (error) {
             console.log(error);
-            setGames([]);
         } finally {
             setLoading(false);
         }
@@ -82,11 +67,11 @@ const Casino = ({ gameType }: { gameType: string }) => {
 
     useEffect(() => {
         getGameList();
-    }, [provider, currentPage, gameType]);
+    }, [provider, currentPage]);
 
     useEffect(() => {
         getProviders();
-    }, [gameType]);
+    }, []);
 
     return (
         <Stack direction="column" spacing={1}>
@@ -127,12 +112,7 @@ const Casino = ({ gameType }: { gameType: string }) => {
                     ))
                 ) : games.length > 0 ? (
                     games.map((item: any, index: number) => (
-                        <GameCard
-                            key={index}
-                            image={item.ownImg ? ASSETS(item.ownImg) : item.image_url}
-                            name={item.game_name}
-                            href={`/game/${item.game_code}`}
-                        />
+                        <GameCard key={index} image={item.image} name={item.name} href={`/ag-game/${item.id}`} />
                     ))
                 ) : (
                     <Stack

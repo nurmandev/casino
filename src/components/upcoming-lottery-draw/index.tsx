@@ -19,7 +19,7 @@ const LotterySectionItem = styled(Box)(({ theme }) => ({
     flexDirection: 'column',
     justifyContent: 'space-between',
     width: '100%',
-    borderRadius: Number(theme.shape.borderRadius) * 1.5,
+    borderRadius: (theme.shape.borderRadius as number) * 1.5,
     padding: theme.spacing(1.5),
     color: theme.palette.text.primary,
     overflow: 'hidden',
@@ -46,7 +46,7 @@ const TimeUnit = styled(Box)(({ theme }) => ({
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: Number(theme.shape.borderRadius),
+    borderRadius: theme.shape.borderRadius,
     fontSize: '0.875rem',
     fontWeight: 600,
     backgroundColor: 'rgba(0, 0, 0, 0.1)'

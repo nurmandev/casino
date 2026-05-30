@@ -17,7 +17,6 @@ import ColorButton from 'components/ColorButton';
 import { useSettingsContext } from 'components/settings';
 // api
 import { agGameLaunch } from 'api';
-import { ASSETS } from 'utils/axios';
 // store
 import { useSelector } from 'store/store';
 
@@ -35,7 +34,7 @@ const GameFrame = styled(Box)(({ theme }) => ({
     position: 'relative',
     zIndex: 10,
     backgroundColor: theme.palette.background.layer2,
-    borderRadius: Number(theme.shape.borderRadius),
+    borderRadius: theme.shape.borderRadius,
     overflow: 'hidden',
     transition: 'all 0.3s'
 }));
@@ -52,7 +51,7 @@ const GameOverlay = styled(Box)({
 });
 
 const GameControls = styled(Box)(({ theme }) => ({
-    borderRadius: Number(theme.shape.borderRadius),
+    borderRadius: theme.shape.borderRadius,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -219,7 +218,7 @@ const GameContainer = ({ gameData, gameCode }: { gameData: any; gameCode: string
                 <Box sx={{ position: 'relative', width: '100%', paddingTop: '56.25%' }}>
                     <Box
                         component="img"
-                        src={gameData?.ownImg ? ASSETS(gameData.ownImg) : gameData?.image || ''}
+                        src={gameData?.image || ''}
                         sx={{
                             position: 'absolute',
                             inset: 0,

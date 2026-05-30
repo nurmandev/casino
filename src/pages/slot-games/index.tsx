@@ -38,26 +38,21 @@ const SlotGames = () => {
     const getGameList = async () => {
         try {
             setLoading(true);
+            if (provider) {
+                const processed = provider.length === 1 && provider[0] === 'All' ? undefined : provider;
 
-            const query: any = {
-                currentPage: currentPage,
-                perPage: 40,
-                categories: 'slots',
-                provider: provider.includes('All') ? undefined : provider
-            };
+                const response = await getSlotGames({
+                    currentPage: currentPage,
+                    perPage: 40,
+                    categories: 'slots',
+                    provider: processed
+                });
 
-            const response = await getSlotGames(query);
-
-            if (response && response.data) {
                 setGames(response.data);
                 setTotalPages(Math.ceil(response.count / 40));
-            } else {
-                setGames([]);
-                setTotalPages(1);
             }
         } catch (error) {
             console.log(error);
-            setGames([]);
         } finally {
             setLoading(false);
         }
@@ -127,12 +122,7 @@ const SlotGames = () => {
                     ))
                 ) : games.length > 0 ? (
                     games.map((item: any, index: number) => (
-                        <GameCard
-                            key={index}
-                            image={item.ownImg ? ASSETS(item.ownImg) : item.image_url}
-                            name={item.game_name}
-                            href={`/game/${item.game_code}`}
-                        />
+                        <GameCard key={index} image={item.image} name={item.name} href={`/ag-game/${item.id}`} />
                     ))
                 ) : (
                     <Stack

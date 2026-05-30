@@ -15,15 +15,31 @@ import { updateSport } from 'store/slices/setting';
 import { useAuth } from 'hooks/use-auth-context';
 
 const SPORT_DATA: any = {
-    1012: {
-        name: 'SBO Sports',
-        logo: '/assets/sports/sbo.png',
-        logoLight: '/assets/sports/sbo-light.png',
-        color: '#004daa1f',
+    123: {
+        name: 'FB SPORTS',
+        logo: '/assets/sports/fb.png',
+        logoLight: '/assets/sports/fb-light.png',
+        color: '#8b71ff1f',
         mHeight: 40,
-        mWidth: 80
+        mWidth: 73
     },
-    1046: {
+    116: {
+        name: 'DIGITAIN',
+        logo: '/assets/sports/digitain.png',
+        logoLight: '/assets/sports/digitain-light.png',
+        color: '#05A8C31f',
+        mHeight: 23,
+        mWidth: 129
+    },
+    19: {
+        name: 'WBET',
+        logo: '/assets/sports/wbet.png',
+        logoLight: '/assets/sports/wbet-light.png',
+        color: '#D99E3F1f',
+        mHeight: 25,
+        mWidth: 74
+    },
+    30: {
         name: 'SABA SPORTS',
         logo: '/assets/sports/saba.png',
         logoLight: '/assets/sports/saba-light.png',
@@ -100,95 +116,92 @@ const Sports = () => {
                 </Grid>
             ) : (
                 <Grid container spacing={4}>
-                    {sportList.map((sport: any, index) => {
-                        const sportData = SPORT_DATA[sport.product_code] || SPORT_DATA[sport.provider_id];
-                        if (!sportData) return null;
-
-                        return (
-                            <Grid size={{ xs: 12, sm: 6 }} key={index}>
-                                <Card
-                                    sx={{
-                                        width: 1,
-                                        bgcolor: theme.palette.mode === 'dark' ? '#1b3335' : '#fff',
-                                        display: 'flex',
-                                        justifyContent: 'space-between',
-                                        alignItems: 'center',
-                                        padding: 0,
-                                        position: 'relative',
-                                        borderRadius: 3
-                                    }}
-                                >
-                                    <Box display="flex" alignItems="center" sx={{ width: 1, zIndex: 10 }}>
+                    {sportList.map((sport: any, index) => (
+                        <Grid size={{ xs: 12, sm: 6 }} key={index}>
+                            <Card
+                                sx={{
+                                    width: 1,
+                                    bgcolor: theme.palette.mode === 'dark' ? '#1b3335' : '#fff',
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    alignItems: 'center',
+                                    padding: 0,
+                                    position: 'relative',
+                                    borderRadius: 3
+                                }}
+                            >
+                                <Box display="flex" alignItems="center" sx={{ width: 1, zIndex: 10 }}>
+                                    <Box
+                                        sx={{
+                                            width: 224,
+                                            height: 224,
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            background: `linear-gradient(270deg, #00000021 29.11%, ${SPORT_DATA[sport.provider_id].color} 99.61%)`
+                                        }}
+                                    >
                                         <Box
+                                            component="img"
+                                            src={
+                                                theme.palette.mode === 'dark'
+                                                    ? SPORT_DATA[sport.provider_id].logo
+                                                    : SPORT_DATA[sport.provider_id].logoLight
+                                            }
+                                            alt={SPORT_DATA[sport.provider_id].name}
+                                        />
+                                    </Box>
+                                    <Stack
+                                        alignItems="center"
+                                        justifyContent="center"
+                                        spacing={'22px'}
+                                        sx={{ flexGrow: 1, flex: 1 }}
+                                    >
+                                        <Typography fontWeight="bold" sx={{ fontSize: 24 }}>
+                                            {SPORT_DATA[sport.provider_id].name}
+                                        </Typography>
+                                        <Button
+                                            variant="contained"
+                                            endIcon={
+                                                <RightIcon
+                                                    sx={{
+                                                        width: 5,
+                                                        height: 8,
+                                                        color: sport.state ? '#000' : '#00000082'
+                                                    }}
+                                                />
+                                            }
+                                            key={index}
+                                            {...(sport.state && {
+                                                component: ReactLink,
+                                                disabled: !sport.currency.includes(user.currency),
+                                                to: `/sports/game/${sport.product_code}/${user.currency}`
+                                            })}
                                             sx={{
-                                                width: 224,
-                                                height: 224,
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                background: `linear-gradient(270deg, #00000021 29.11%, ${sportData.color} 99.61%)`
+                                                height: 40,
+                                                minWidth: 116,
+                                                borderRadius: 50,
+                                                px: 2,
+                                                background: 'linear-gradient(90deg, #9FEA53 0%, #64E7A3 100%)',
+                                                color: sport.state ? '#000' : '#00000082',
+                                                fontWeight: 'bold',
+                                                '&:hover': {
+                                                    background: 'linear-gradient(90deg, #9FEA53 0%, #64E7A3 100%)'
+                                                }
                                             }}
                                         >
-                                            <Box
-                                                component="img"
-                                                src={
-                                                    theme.palette.mode === 'dark' ? sportData.logo : sportData.logoLight
-                                                }
-                                                alt={sportData.name}
-                                            />
-                                        </Box>
-                                        <Stack
-                                            alignItems="center"
-                                            justifyContent="center"
-                                            spacing={'22px'}
-                                            sx={{ flexGrow: 1, flex: 1 }}
-                                        >
-                                            <Typography fontWeight="bold" sx={{ fontSize: 24 }}>
-                                                {sportData.name}
-                                            </Typography>
-                                            <Button
-                                                variant="contained"
-                                                endIcon={
-                                                    <RightIcon
-                                                        sx={{
-                                                            width: 5,
-                                                            height: 8,
-                                                            color: sport.state ? '#000' : '#00000082'
-                                                        }}
-                                                    />
-                                                }
-                                                key={index}
-                                                {...(sport.state && {
-                                                    component: ReactLink,
-                                                    disabled: !sport.currency.includes(user?.currency),
-                                                    to: `/sports/game/${sport.product_code}/${user?.currency}`
-                                                })}
-                                                sx={{
-                                                    height: 40,
-                                                    minWidth: 116,
-                                                    borderRadius: 50,
-                                                    px: 2,
-                                                    background: 'linear-gradient(90deg, #9FEA53 0%, #64E7A3 100%)',
-                                                    color: sport.state ? '#000' : '#00000082',
-                                                    fontWeight: 'bold',
-                                                    '&:hover': {
-                                                        background: 'linear-gradient(90deg, #9FEA53 0%, #64E7A3 100%)'
-                                                    }
-                                                }}
-                                            >
-                                                {sport.state ? t('start') : t('comingSoon')}
-                                            </Button>
-                                        </Stack>
-                                    </Box>
-                                    <Box
-                                        component="img"
-                                        src={`/assets/sports/${theme.palette.mode === 'dark' ? 'mask' : 'mask-light'}.png`}
-                                        sx={{ position: 'absolute', height: 1, top: 0, right: 0 }}
-                                    />
-                                </Card>
-                            </Grid>
-                        );
-                    })}
+                                            {sport.state ? t('start') : t('comingSoon')}
+                                        </Button>
+                                    </Stack>
+                                </Box>
+                                <Box
+                                    component="img"
+                                    src={`/assets/sports/${theme.palette.mode === 'dark' ? 'mask' : 'mask-light'}.png`}
+                                    sx={{ position: 'absolute', height: 1, top: 0, right: 0 }}
+                                />
+                            </Card>
+                        </Grid>
+                    ))}
                 </Grid>
             )}
         </Stack>
@@ -223,109 +236,106 @@ const Sports = () => {
                     {t('sports')}
                 </Typography>
                 <Grid container spacing={'14px'}>
-                    {sportList.map((sport: any, index) => {
-                        const sportData = SPORT_DATA[sport.product_code] || SPORT_DATA[sport.provider_id];
-                        if (!sportData) return null;
-
-                        return (
-                            <Grid size={{ xs: 6 }} key={index}>
-                                <Card
-                                    sx={{
-                                        width: 1,
-                                        bgcolor: theme.palette.mode === 'dark' ? '#1b3335' : '#fff',
-                                        display: 'flex',
-                                        justifyContent: 'space-between',
-                                        alignItems: 'center',
-                                        padding: 0,
-                                        position: 'relative',
-                                        borderRadius: 3
-                                    }}
+                    {sportList.map((sport: any, index) => (
+                        <Grid size={6} key={index}>
+                            <Card
+                                sx={{
+                                    width: 1,
+                                    bgcolor: theme.palette.mode === 'dark' ? '#1b3335' : '#fff',
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    alignItems: 'center',
+                                    padding: 0,
+                                    position: 'relative',
+                                    borderRadius: 3
+                                }}
+                            >
+                                <Box
+                                    display="flex"
+                                    alignItems="center"
+                                    flexDirection="column"
+                                    sx={{ width: 1, zIndex: 99 }}
                                 >
                                     <Box
-                                        display="flex"
-                                        alignItems="center"
-                                        flexDirection="column"
-                                        sx={{ width: 1, zIndex: 99 }}
+                                        sx={{
+                                            width: 1,
+                                            height: 76,
+                                            px: '15px',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            background: `linear-gradient(0deg, transparent 29.11%, ${SPORT_DATA[sport.provider_id].color} 99.61%)`
+                                        }}
                                     >
                                         <Box
                                             sx={{
-                                                width: 1,
-                                                height: 76,
-                                                px: '15px',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                background: `linear-gradient(0deg, transparent 29.11%, ${sportData.color} 99.61%)`
+                                                width: SPORT_DATA[sport.provider_id].mWidth,
+                                                height: SPORT_DATA[sport.provider_id].mHeight
+                                            }}
+                                            component="img"
+                                            src={
+                                                theme.palette.mode === 'dark'
+                                                    ? SPORT_DATA[sport.provider_id].logo
+                                                    : SPORT_DATA[sport.provider_id].logoLight
+                                            }
+                                            alt={SPORT_DATA[sport.provider_id].name}
+                                        />
+                                    </Box>
+                                    <Stack
+                                        alignItems="center"
+                                        justifyContent="center"
+                                        spacing={'7px'}
+                                        sx={{ flexGrow: 1, flex: 1, pb: '14px' }}
+                                    >
+                                        <Typography variant="h6" fontWeight="bold" sx={{ fontSize: 14 }}>
+                                            {SPORT_DATA[sport.provider_id].name}
+                                        </Typography>
+                                        <Button
+                                            variant="contained"
+                                            endIcon={
+                                                <RightIcon
+                                                    sx={{
+                                                        width: 5,
+                                                        height: 6,
+                                                        color: sport.state ? '#000' : '#00000082'
+                                                    }}
+                                                />
+                                            }
+                                            key={index}
+                                            {...(sport.state && {
+                                                component: ReactLink,
+                                                disabled: !sport.currency.includes(user.currency),
+                                                to: `/sports/game/${sport.product_code}/${sport.currency}`
+                                            })}
+                                            sx={{
+                                                height: 28,
+                                                with: 82,
+                                                minWidth: 0,
+                                                borderRadius: 50,
+                                                background: 'linear-gradient(90deg, #9FEA53 0%, #64E7A3 100%)',
+                                                color: sport.state ? '#000' : '#00000082',
+                                                fontWeight: 'bold',
+                                                '&:hover': {
+                                                    background: 'linear-gradient(90deg, #9FEA53 0%, #64E7A3 100%)'
+                                                },
+                                                '.MuiButton-icon': {
+                                                    ml: '4px',
+                                                    mr: '3px'
+                                                }
                                             }}
                                         >
-                                            <Box
-                                                sx={{
-                                                    width: sportData.mWidth,
-                                                    height: sportData.mHeight
-                                                }}
-                                                component="img"
-                                                src={
-                                                    theme.palette.mode === 'dark' ? sportData.logo : sportData.logoLight
-                                                }
-                                                alt={sportData.name}
-                                            />
-                                        </Box>
-                                        <Stack
-                                            alignItems="center"
-                                            justifyContent="center"
-                                            spacing={'7px'}
-                                            sx={{ flexGrow: 1, flex: 1, pb: '14px' }}
-                                        >
-                                            <Typography variant="h6" fontWeight="bold" sx={{ fontSize: 14 }}>
-                                                {sportData.name}
-                                            </Typography>
-                                            <Button
-                                                variant="contained"
-                                                endIcon={
-                                                    <RightIcon
-                                                        sx={{
-                                                            width: 5,
-                                                            height: 6,
-                                                            color: sport.state ? '#000' : '#00000082'
-                                                        }}
-                                                    />
-                                                }
-                                                key={index}
-                                                {...(sport.state && {
-                                                    component: ReactLink,
-                                                    disabled: !sport.currency.includes(user?.currency),
-                                                    to: `/sports/game/${sport.product_code}/${user?.currency}`
-                                                })}
-                                                sx={{
-                                                    height: 28,
-                                                    width: 82,
-                                                    minWidth: 0,
-                                                    borderRadius: 50,
-                                                    background: 'linear-gradient(90deg, #9FEA53 0%, #64E7A3 100%)',
-                                                    color: sport.state ? '#000' : '#00000082',
-                                                    fontWeight: 'bold',
-                                                    '&:hover': {
-                                                        background: 'linear-gradient(90deg, #9FEA53 0%, #64E7A3 100%)'
-                                                    },
-                                                    '.MuiButton-icon': {
-                                                        ml: '4px',
-                                                        mr: '3px'
-                                                    }
-                                                }}
-                                            >
-                                                {sport.state ? t('start') : t('comingSoon')}
-                                            </Button>
-                                        </Stack>
-                                    </Box>
-                                    <Box
-                                        component="img"
-                                        src={`/assets/sports/${theme.palette.mode === 'dark' ? 'mask-mobile' : 'mask-mobile-light'}.png`}
-                                        sx={{ position: 'absolute', width: 1, bottom: 0, right: 0 }}
-                                    />
-                                </Card>
-                            </Grid>
-                        );
-                    })}
+                                            {sport.state ? t('start') : t('comingSoon')}
+                                        </Button>
+                                    </Stack>
+                                </Box>
+                                <Box
+                                    component="img"
+                                    src={`/assets/sports/${theme.palette.mode === 'dark' ? 'mask-mobile' : 'mask-mobile-light'}.png`}
+                                    sx={{ position: 'absolute', width: 1, bottom: 0, right: 0 }}
+                                />
+                            </Card>
+                        </Grid>
+                    ))}
                 </Grid>
             </Stack>
         </Stack>

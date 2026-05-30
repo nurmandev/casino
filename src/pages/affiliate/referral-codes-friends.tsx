@@ -26,7 +26,6 @@ import LoadTable from 'components/load-table';
 import { useCopyToClipboard } from 'hooks/use-copy-to-clipboard';
 //
 import { CreateReferralModal } from './create-referral-modal';
-import { APP_URL } from 'config';
 
 const ReferralCodeFriendView = () => {
     const { t } = useTranslation();
@@ -155,10 +154,10 @@ const ReferralCodeFriendView = () => {
                                             </IconButton>
                                         </TableCell>
                                         <TableCell align="center">
-                                            <Typography component="span">{`${APP_URL}/?r=p-${item.code}`}</Typography>
+                                            <Typography component="span">{`${window.location.origin}/?r=p-${item.code}`}</Typography>
                                             <IconButton
                                                 sx={{ borderRadius: 1, ml: 1, p: 0.5 }}
-                                                onClick={() => copy(`${APP_URL}/?r=p-${item.code}`)}
+                                                onClick={() => copy(`${window.location.origin}/?r=p-${item.code}`)}
                                             >
                                                 <ContentCopy sx={{ fontSize: 16 }} />
                                             </IconButton>

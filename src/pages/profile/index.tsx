@@ -18,7 +18,7 @@ const ModalContent = styled(Box)(({ theme }) => ({
     display: 'flex',
     flex: '1 1',
     backgroundColor: theme.palette.background.default,
-    borderRadius: Number(theme.shape.borderRadius) * 3,
+    borderRadius: (theme.shape.borderRadius as number) * 3,
     overflow: 'hidden',
     width: '100%',
     maxWidth: '480px',

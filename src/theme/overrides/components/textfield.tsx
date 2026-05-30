@@ -61,7 +61,7 @@ export default function TextField(theme: Theme) {
         // BASE
         MuiInputBase: {
             styleOverrides: {
-                borderRadius: Number(theme.shape.borderRadius) * 2,
+                borderRadius: (theme.shape.borderRadius as number) * 2,
                 root: {
                     [`&.${inputBaseClasses.disabled}`]: {
                         '& svg': {
@@ -85,7 +85,7 @@ export default function TextField(theme: Theme) {
         MuiOutlinedInput: {
             styleOverrides: {
                 root: {
-                    borderRadius: Number(theme.shape.borderRadius) * 2,
+                    borderRadius: (theme.shape.borderRadius as number) * 2,
                     backgroundColor: theme.palette.background.layer4,
                     [`&.${outlinedInputClasses.focused}`]: {
                         [`& .${outlinedInputClasses.notchedOutline}`]: {
@@ -127,7 +127,7 @@ export default function TextField(theme: Theme) {
             },
             styleOverrides: {
                 root: {
-                    borderRadius: Number(theme.shape.borderRadius) * 2,
+                    borderRadius: (theme.shape.borderRadius as number) * 2,
                     backgroundColor: alpha(theme.palette.grey[500], 0.08),
                     '&:hover': {
                         backgroundColor: alpha(theme.palette.grey[500], 0.16)

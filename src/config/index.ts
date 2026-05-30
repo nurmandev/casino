@@ -5,9 +5,7 @@ const NODE_ENV = import.meta.env.MODE as 'development' | 'production';
 export const HOST_API_KEY =
     NODE_ENV === 'production'
         ? (import.meta.env.VITE_HOST_API as string)
-        : (import.meta.env.VITE_LOCAL_HOST_API as string || 'http://localhost:5000');
-
-export const APP_URL = import.meta.env.VITE_APP_URL || 'https://shivaspins.com';
+        : 'http://localhost:5000';
 
 export const PATH_AFTER_LOGIN = '/auth/login';
 

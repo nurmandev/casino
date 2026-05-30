@@ -54,7 +54,7 @@ const SignUpModal = () => {
             email: '',
             username: '',
             password: '',
-            currencyId: currencies?.[0]?._id,
+            currencyId: currencies[0]?._id,
             agreeTerms: false
         }),
         [currencies]

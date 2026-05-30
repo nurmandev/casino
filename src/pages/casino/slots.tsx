@@ -6,7 +6,7 @@ import { MultiSelect } from 'components/multi-select';
 import Pagination from 'components/pagination';
 import { SortSelect } from 'components/sort-select';
 import { categoryType } from 'types/game';
-import { getSlotGames, getSlotProviders } from 'api';
+import { getAgCategory, getSlotGames, getSlotProviders } from 'api';
 import { ASSETS } from 'utils/axios';
 
 const sortList = ['Popular', 'A-Z', 'Z-A', 'New'];
@@ -22,7 +22,7 @@ const Slots = ({ gameType }: { gameType: string }) => {
 
     const selectList = useMemo(() => {
         return providerList.map((item: any) => ({
-            value: `${item}`,
+            value: item,
             label: item
         }));
     }, [providerList]);
@@ -32,39 +32,28 @@ const Slots = ({ gameType }: { gameType: string }) => {
     };
 
     const getCategories = async () => {
-        try {
-            const response = await getSlotProviders('slots');
-            if (Array.isArray(response)) {
-                setProviderList(response);
-            }
-        } catch (error) {
-            console.log(error);
-        }
+        const response = await getSlotProviders(gameType);
+        setProviderList(response);
     };
 
     const getGameList = async () => {
         try {
             setLoading(true);
+            if (provider) {
+                const processed = provider.length === 1 && provider[0] === 'All' ? undefined : provider;
 
-            const query: any = {
-                currentPage: currentPage,
-                perPage: 40,
-                categories: 'slots',
-                provider: provider.includes('All') ? undefined : provider
-            };
+                const response = await getSlotGames({
+                    currentPage: currentPage,
+                    perPage: 40,
+                    categories: gameType,
+                    provider: processed
+                });
 
-            const response = await getSlotGames(query);
-
-            if (response && response.data) {
                 setGames(response.data);
                 setTotalPages(Math.ceil(response.count / 40));
-            } else {
-                setGames([]);
-                setTotalPages(1);
             }
         } catch (error) {
             console.log(error);
-            setGames([]);
         } finally {
             setLoading(false);
         }
@@ -88,13 +77,15 @@ const Slots = ({ gameType }: { gameType: string }) => {
                     width={300}
                     setSelectedValue={setSelectedSort}
                 />
-                <MultiSelect
-                    size="small"
-                    placeholder="Providers"
-                    selectedValues={provider}
-                    selectValues={setProvider}
-                    list={selectList}
-                />
+                {gameType === 'slot' && (
+                    <MultiSelect
+                        size="small"
+                        placeholder="Providers"
+                        selectedValues={provider}
+                        selectValues={setProvider}
+                        list={selectList}
+                    />
+                )}
             </Stack>
             <Grid
                 container

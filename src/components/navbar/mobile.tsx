@@ -28,7 +28,6 @@ import { usePathname, useRouter } from 'routes/hook';
 import { useAuth } from 'hooks/use-auth-context';
 import { Divider, IconButton } from '@mui/material';
 import { CloseOutlined } from '@mui/icons-material';
-import SidebarSlots from './sidebar-slots';
 
 interface MenuItem {
     name: string;
@@ -485,11 +484,6 @@ const MobileNavbar = memo(({ open, isSport, onClose }: NavProps) => {
                                 />
                             ))}
                         </Stack>
-
-                        {/* Popular Slots Section for Mobile */}
-                        <Box sx={{ px: 1, py: 2 }}>
-                            <SidebarSlots open={open} />
-                        </Box>
 
                         <Stack direction="column" spacing={2} sx={{ mt: 'auto' }}>
                             <Box>

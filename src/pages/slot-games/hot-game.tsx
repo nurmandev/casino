@@ -5,7 +5,7 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import GameCard from 'components/game-card';
 import Pagination from 'components/pagination';
 import { SortSelect } from 'components/sort-select';
-import { getGamesBySearch, getSlotGames } from 'api';
+import { getSlotGames } from 'api';
 import { ASSETS } from 'utils/axios';
 
 const sortList = ['Popular', 'A-Z', 'Z-A', 'New'];
@@ -26,26 +26,18 @@ const HotGames = () => {
     const getGameList = async () => {
         try {
             setLoading(true);
+            if (provider) {
+                const response = await getSlotGames({
+                    currentPage: currentPage,
+                    perPage: 40,
+                    categories: undefined
+                });
 
-            // Use getGamesBySearch (GSC)
-            // Hot games usually implies a specific list. GSC GameModel has 'recommend' field, but search api handles name/type.
-            // If we just want "some games", we can query with empty type or specific type if needed.
-            // For now, let's fetch 'SLOT' or just empty type to show something.
-            // Or better, if 'hot' is a category in the future, we pass it.
-            // GSC static.ts doesn't have 'HOT'.
-            // Let's just fetch all games for now or a reliable list.
-            const response = await getGamesBySearch('', '', currentPage, 40);
-
-            if (response && response.data) {
                 setGames(response.data);
                 setTotalPages(Math.ceil(response.count / 40));
-            } else {
-                setGames([]);
-                setTotalPages(1);
             }
         } catch (error) {
             console.log(error);
-            setGames([]);
         } finally {
             setLoading(false);
         }
@@ -104,12 +96,7 @@ const HotGames = () => {
                     ))
                 ) : games.length > 0 ? (
                     games.map((item: any, index: number) => (
-                        <GameCard
-                            key={index}
-                            image={item.ownImg ? ASSETS(item.ownImg) : item.image_url}
-                            name={item.game_name}
-                            href={`/game/${item.game_code}`}
-                        />
+                        <GameCard key={index} image={item.image} name={item.gameName} href={`/ag-game/${item.id}`} />
                     ))
                 ) : (
                     <Stack

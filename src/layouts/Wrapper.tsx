@@ -8,9 +8,10 @@ import { MAX_DRAWER_WIDTH, MIN_DRAWER_WIDTH } from 'config/constant';
 import { useResponsive } from 'hooks/use-responsive';
 
 const Wrapper = ({ open }: { open: boolean }) => {
-    // Match HomeLayout logic: "Desktop" (Permanent/Mini Drawer) vs Mobile (Overlay)
-    // HomeLayout uses 'up sm' for desktop layout
-    const isDesktop = useResponsive('up', 'sm');
+    const isDesktop = useResponsive('up', 'md');
+    const isMobile = useResponsive('between', 'md');
+
+    const isDownSM = useResponsive('down', 'sm');
 
     return (
         <Box
@@ -18,12 +19,11 @@ const Wrapper = ({ open }: { open: boolean }) => {
             sx={{
                 minHeight: '100vh',
                 bgcolor: 'background.site',
-                transition: 'margin-left 0.3s', // Add transition for smooth zoom/resize
-                ml: isDesktop ? (open ? `${MAX_DRAWER_WIDTH - 1}px` : `${MIN_DRAWER_WIDTH - 1}px`) : 0,
+                ml: open && isDesktop ? `${MAX_DRAWER_WIDTH}px` : isMobile ? 0 : isDownSM ? 0 : `${MIN_DRAWER_WIDTH}px`,
                 pb: !isDesktop ? '70px' : 0
             }}
         >
-            <Container maxWidth={false} sx={{ pt: '4.5rem', pb: 3, px: { xs: 2, md: 3 } }}>
+            <Container sx={{ pt: '4.5rem', pb: 3, px: '1rem', maxWidth: '1248px !important' }}>
                 <Outlet />
             </Container>
 

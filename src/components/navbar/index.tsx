@@ -28,7 +28,6 @@ import { usePathname, useRouter } from 'routes/hook';
 // hooks
 import { useAuth } from 'hooks/use-auth-context';
 import { ButtonBase } from '@mui/material';
-import SidebarSlots from './sidebar-slots';
 
 interface MenuItem {
     name: string;
@@ -466,9 +465,6 @@ const Navbar = memo(({ open }: NavProps) => {
                             />
                         ))}
                     </Stack>
-
-                    {/* Popular Slots Section */}
-                    <SidebarSlots open={open} />
 
                     <Stack direction="column" gap={0.5}>
                         <TheemSwitch open={open} />

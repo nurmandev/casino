@@ -35,7 +35,7 @@ const SettingButton = styled(Button)(({ theme }) => ({
     paddingBottom: '2px',
     textTransform: 'none',
     backgroundColor: theme.palette.background.layer5,
-    borderRadius: Number(theme.shape.borderRadius)
+    borderRadius: theme.shape.borderRadius
 }));
 
 const PreferenceSection = styled(Paper)(({ theme }) => ({
@@ -43,7 +43,7 @@ const PreferenceSection = styled(Paper)(({ theme }) => ({
     padding: theme.spacing(1.5),
     marginBottom: theme.spacing(1.5),
     backgroundColor: theme.palette.background.layer4,
-    borderRadius: Number(theme.shape.borderRadius) * 2,
+    borderRadius: (theme.shape.borderRadius as number) * 2,
     [theme.breakpoints.up('sm')]: {
         padding: theme.spacing(2, 3),
         marginBottom: theme.spacing(2)
@@ -64,7 +64,7 @@ const SectionHeader = styled(Box)(({ theme }) => ({
 const DisplayModeToggle = styled(Box)(({ theme }) => ({
     height: '44px',
     padding: '4px',
-    borderRadius: Number(theme.shape.borderRadius),
+    borderRadius: theme.shape.borderRadius,
     backgroundColor: theme.palette.background.layer5,
     display: 'flex',
     position: 'relative',
