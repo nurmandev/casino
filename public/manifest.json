@@ -1,6 +1,6 @@
 {
-    "short_name": "87 Casino",
-    "name": "Online Sports and Casino Betting Platform",
+    "short_name": "BC.GAME",
+    "name": "BC.GAME",
     "icons": [
         {
             "src": "favicon.ico",
@@ -18,8 +18,9 @@
             "sizes": "512x512"
         }
     ],
-    "start_url": ".",
+    "description": "BC.GAME",
+    "start_url": "/",
     "display": "standalone",
-    "theme_color": "#000000",
-    "background_color": "#ffffff"
+    "theme_color": "#24262b",
+    "background_color": "#24262b"
 }
