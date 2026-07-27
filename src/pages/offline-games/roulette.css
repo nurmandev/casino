@@ -11,7 +11,7 @@ input:focus {
 
 html,
 body {
-    font-family: AvertaStd;
+    font-family: CustomFont;
     cursor: default;
     -webkit-touch-callout: none;
     -webkit-user-select: none;

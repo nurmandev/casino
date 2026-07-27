@@ -5,32 +5,32 @@
 @import 'react-lazy-load-image-component/src/effects/blur.css';
 
 @font-face {
-    font-family: 'AvertaStd';
-    src: url('./assets/fonts/AvertaStd-Regular.ttf') format('truetype');
+    font-family: 'CustomFont';
+    src: url('./assets/fonts/CustomFont.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'AvertaStd';
-    src: url('./assets/fonts/AvertaStd-Medium.ttf') format('truetype');
+    font-family: 'CustomFont';
+    src: url('./assets/fonts/CustomFont.ttf') format('truetype');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'AvertaStd';
-    src: url('./assets/fonts/AvertaStd-SemiBold.ttf') format('truetype');
+    font-family: 'CustomFont';
+    src: url('./assets/fonts/CustomFont.ttf') format('truetype');
     font-weight: 600;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'AvertaStd';
-    src: url('./assets/fonts/AvertaStd-Bold.ttf') format('truetype');
+    font-family: 'CustomFont';
+    src: url('./assets/fonts/CustomFont.ttf') format('truetype');
     font-weight: 700;
     font-style: normal;
     font-display: swap;

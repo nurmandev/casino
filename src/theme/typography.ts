@@ -28,7 +28,7 @@ declare module '@mui/material/styles' {
     }
 }
 
-const primaryFont = 'AvertaStd';
+const primaryFont = 'CustomFont';
 // const secondaryFont = 'CircularStd, sans-serif'; // Local Font
 
 // ----------------------------------------------------------------------
